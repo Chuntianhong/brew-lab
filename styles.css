@@ -63,7 +63,7 @@
   align-items: flex-start;
   margin-bottom: 24px;
   padding-bottom: 18px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 1px solid var(--hairline);
   flex-wrap: wrap;
   gap: 14px;
 }
@@ -120,14 +120,14 @@
   color: var(--cream);
   padding: 0 14px;
   display: inline-block;
-  transform: rotate(-1deg);
+  border-radius: 4px;
 }
 .cover-grid h1 .teal-block {
   background: var(--teal);
   color: var(--cream);
   padding: 0 14px;
   display: inline-block;
-  transform: rotate(1deg);
+  border-radius: 4px;
 }
 .cover-grid .lede {
   font-family: var(--font-display);
@@ -164,12 +164,12 @@
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.04em;
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--hairline);
   transition: all 0.2s;
   cursor: pointer;
   text-decoration: none;
 }
-.cat-chip:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 0 var(--ink); }
+.cat-chip:hover { transform: translateY(-2px); box-shadow: 0 6px 14px -6px rgba(31, 26, 20, 0.30); }
 .cat-chip.tomato   { background: var(--tomato);       color: var(--cream); }
 .cat-chip.teal     { background: var(--teal);         color: var(--cream); }
 .cat-chip.leaf     { background: var(--leaf);         color: var(--cream); }
@@ -182,10 +182,10 @@
   position: relative;
   aspect-ratio: 4/5;
   background: linear-gradient(135deg, #3D2818 0%, #1A0D06 100%);
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 2px solid var(--ink);
-  box-shadow: 8px 8px 0 0 var(--ink);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 4px 8px rgba(31, 26, 20, 0.06), 0 32px 64px -28px rgba(31, 26, 20, 0.42);
 }
 .cover-photo img, .cover-photo svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cover-photo .stamp {
@@ -201,19 +201,17 @@
 .cover-ribbon {
   position: absolute;
   top: 18px;
-  right: -8px;
+  right: 18px;
   background: var(--marigold);
   color: var(--ink);
-  padding: 12px 18px;
-  border-radius: 4px;
-  transform: rotate(4deg);
+  padding: 10px 14px;
+  border-radius: 999px;
   font-family: var(--font-body);
   font-weight: 800;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 2px solid var(--ink);
-  box-shadow: 4px 4px 0 0 var(--ink);
+  box-shadow: 0 2px 4px rgba(31, 26, 20, 0.08), 0 12px 24px -14px rgba(31, 26, 20, 0.25);
   z-index: 2;
 }
 .cover-ribbon small { display: block; font-size: 9px; font-weight: 700; opacity: 0.7; margin-bottom: 2px; }
@@ -301,9 +299,7 @@
   font-weight: 800;
   font-size: 26px;
   line-height: 0.9;
-  border: 3px solid var(--ink);
-  transform: rotate(-8deg);
-  box-shadow: 6px 6px 0 0 var(--tomato);
+  box-shadow: 0 4px 8px rgba(31, 26, 20, 0.10), 0 18px 36px -14px rgba(31, 26, 20, 0.40);
   flex-shrink: 0;
 }
 .give-sticker em { font-style: italic; font-size: 14px; font-weight: 600; margin-top: 4px; color: var(--tomato); }
@@ -327,8 +323,8 @@
   min-width: 64px;
   padding: 10px;
   text-align: center;
-  border-radius: 6px;
-  border: 2px solid var(--marigold);
+  border-radius: 10px;
+  border: 1px solid rgba(245, 197, 24, 0.45);
 }
 .cd .n { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1; }
 .cd .u { font-family: var(--font-body); font-weight: 700; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; color: var(--ink-soft); }
@@ -461,8 +457,8 @@
 .latte-marquee {
   width: 100%;
   overflow: hidden;
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
   background: var(--cream);
   padding: 18px 0;
   position: relative;
@@ -485,23 +481,22 @@
 .latte-card {
   flex: 0 0 auto;
   width: 220px;
-  background: var(--cream);
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 4px 4px 0 0 var(--ink);
+  box-shadow: 0 1px 2px rgba(31, 26, 20, 0.04), 0 8px 18px -10px rgba(31, 26, 20, 0.18);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .latte-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 0 var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(31, 26, 20, 0.05), 0 18px 32px -14px rgba(31, 26, 20, 0.28);
 }
 .latte-photo {
   aspect-ratio: 1;
   background-size: cover;
   background-position: center;
-  border-bottom: 1.5px solid var(--ink);
 }
 .latte-meta {
   padding: 10px 12px;
@@ -601,17 +596,9 @@
   .feat-grid .tile.barista, .feat-grid .tile.give { grid-column: auto; }
 }
 
-/* Subtle noise overlay (from the design system) gives the paper-magazine feel */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-}
+/* Noise overlay removed — was making surfaces look grainy on modern displays.
+   Benchmarked against DoorDash / Beli / Reddit, all of which keep surfaces
+   visually clean and let photography do the texture work. */
 body > * { position: relative; z-index: 2; }
 
 /* The italic-tomato accent treatment for headlines */
@@ -718,17 +705,16 @@ input, select, textarea { font: inherit; color: inherit; }
   padding: 11px 18px;
 }
 .btn-ghost:hover { background: rgba(31, 26, 20, 0.06); }
-/* Sticker button — marigold + ink border + offset shadow (signature look) */
+/* Sticker button — marigold pill, soft elevation */
 .btn-sticker {
   background: var(--marigold);
   color: var(--ink);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  padding: 13px 22px;
+  border-radius: 999px;
+  padding: 13px 24px;
   font-weight: 800;
-  box-shadow: 6px 6px 0 0 var(--ink);
+  box-shadow: 0 1px 2px rgba(31, 26, 20, 0.06), 0 10px 20px -10px rgba(31, 26, 20, 0.32);
 }
-.btn-sticker:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 0 var(--ink); background: var(--marigold); }
+.btn-sticker:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(31, 26, 20, 0.08), 0 18px 32px -14px rgba(31, 26, 20, 0.42); background: var(--marigold); }
 .btn-sm { padding: 9px 16px; font-size: 0.85rem; }
 .btn-lg { padding: 16px 28px; font-size: 1.05rem; }
 .btn-block { width: 100%; justify-content: center; }
@@ -2663,10 +2649,10 @@ input, select, textarea { font: inherit; color: inherit; }
 .tile.compete,
 .tile.cafeweek {
   position: relative;
-  border-radius: 22px;
+  border-radius: 20px;
   padding: 32px;
-  border: 2px solid var(--ink);
-  box-shadow: 8px 8px 0 0 var(--ink);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 1px 2px rgba(31, 26, 20, 0.04), 0 12px 28px -16px rgba(31, 26, 20, 0.18);
   overflow: hidden;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
   min-height: 380px;
@@ -2681,9 +2667,8 @@ input, select, textarea { font: inherit; color: inherit; }
 .tile.give:hover,
 .tile.compete:hover,
 .tile.cafeweek:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0 0 var(--ink);
-  border-color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(31, 26, 20, 0.05), 0 24px 44px -20px rgba(31, 26, 20, 0.28);
 }
 
 /* Variant backgrounds */
@@ -2776,26 +2761,2528 @@ input, select, textarea { font: inherit; color: inherit; }
 .newsroom-grid {
   position: relative;
   gap: 0 !important;
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
 }
 .newsroom-grid > * {
   padding: 24px 22px;
-  border-right: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
   background: transparent;
   border-radius: 0;
   box-shadow: none;
   transition: background 0.2s var(--ease);
 }
 .newsroom-grid > *:hover {
-  background: rgba(31, 26, 20, 0.04);
+  background: rgba(31, 26, 20, 0.03);
   transform: none;
   box-shadow: none;
 }
 .newsroom-grid > *:nth-child(3n) { border-right: none; }
 @media (max-width: 800px) {
-  .newsroom-grid > * { border-right: none; border-bottom: 1px solid var(--ink); }
+  .newsroom-grid > * { border-right: none; border-bottom: 1px solid var(--hairline); }
   .newsroom-grid > *:last-child { border-bottom: none; }
+}
+
+/* ============================================================
+   THE BEAN — redesign (Phase 1: design system + auth + nav stubs)
+   ============================================================
+   Scoped to body.bean-app so we don't clobber legacy styles.
+   ============================================================ */
+
+:root {
+  --bg-base: #0F1F14;
+  --bg-alt: #1A2D1F;
+  --bg-card: #FAF6F0;
+  --bg-card-warm: #F4EBDD;
+  --accent-yellow: #F5C842;
+  --accent-yellow-soft: #FCE5A4;
+  --accent-yellow-deep: #C99B1A;
+  --text-on-dark: #F8F4ED;
+  --text-on-dark-muted: #A89F8E;
+  --text-on-light: #1A1F14;
+  --text-on-light-muted: #6B6256;
+  --border-on-dark: rgba(255, 255, 255, 0.08);
+  --border-on-light: rgba(0, 0, 0, 0.08);
+  --bean-display: 'DM Serif Display', Georgia, serif;
+  --bean-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* When the Bean shell is active, html paints the outside-frame color
+   so on desktop the "phone" is centered and the screen fills with bg-base. */
+html:has(body.bean-app) { background: var(--bg-base); }
+/* Fallback for browsers without :has — set on body. */
+body.bean-app {
+  background: var(--bg-base);
+  color: var(--text-on-dark);
+  font-family: var(--bean-body);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 480px;
+  min-height: 100vh;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+  /* Subtle inner shadow on the "phone" frame edges when room exists */
+  box-shadow: 0 0 0 1px var(--border-on-dark);
+}
+body.bean-app .display,
+body.bean-app h1,
+body.bean-app h2 {
+  font-family: var(--bean-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+body.bean-app .accent-yellow-italic {
+  font-family: var(--bean-display);
+  font-style: italic;
+  color: var(--accent-yellow);
+}
+
+/* Component: card (cream content surface) */
+body.bean-app .card {
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  border: 0;
+}
+
+/* Component: pill (small tag) */
+body.bean-app .pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  background: var(--bg-alt);
+  color: var(--text-on-dark);
+  border: 0;
+}
+
+/* Component: btn-primary (yellow, dark text, full-rounded) */
+body.bean-app .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  width: auto;
+  min-height: 0;
+}
+body.bean-app .btn-primary:hover { background: var(--accent-yellow-deep); }
+body.bean-app .btn-primary:active { transform: translateY(1px); }
+body.bean-app .btn-primary.full { width: 100%; height: 48px; padding: 0; }
+
+/* Component: btn-ghost (transparent, light text on dark) */
+body.bean-app .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-on-dark);
+  border: 1px solid var(--border-on-dark);
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+body.bean-app .btn-ghost:hover { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.16); }
+body.bean-app .btn-ghost.full { width: 100%; height: 48px; padding: 0; }
+
+/* Component: stat-tile (uppercase label on top, big value below) */
+body.bean-app .stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+body.bean-app .stat-tile .label {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-on-dark-muted);
+}
+body.bean-app .stat-tile .value {
+  font-family: var(--bean-display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-on-dark);
+}
+
+/* === Auth / landing page === */
+body.bean-app .auth-screen {
+  min-height: 100vh;
+  padding: 48px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+}
+body.bean-app .auth-logo { display: block; }
+body.bean-app .auth-headline {
+  font-family: var(--bean-display);
+  font-size: 36px;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--text-on-dark);
+  letter-spacing: -0.01em;
+  max-width: 380px;
+  margin: 0;
+}
+body.bean-app .auth-headline em {
+  font-style: italic;
+  color: var(--accent-yellow);
+}
+body.bean-app .auth-subhead {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-on-dark-muted);
+  max-width: 320px;
+  margin: 0;
+}
+body.bean-app .auth-card {
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+body.bean-app .auth-toggle {
+  display: flex;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+body.bean-app .auth-toggle-pill {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-on-light);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+body.bean-app .auth-toggle-pill.active {
+  background: var(--text-on-light);
+  color: var(--bg-card);
+}
+body.bean-app .auth-input {
+  width: 100%;
+  height: 44px;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid var(--border-on-light);
+  border-radius: 8px;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  color: var(--text-on-light);
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+body.bean-app .auth-input::placeholder { color: var(--text-on-light-muted); }
+body.bean-app .auth-input:focus { border-color: var(--accent-yellow-deep); }
+body.bean-app .auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  color: var(--text-on-light-muted);
+  font-size: 12px;
+}
+body.bean-app .auth-divider::before,
+body.bean-app .auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-on-light);
+}
+body.bean-app .auth-card .btn-ghost {
+  color: var(--text-on-light);
+  border-color: var(--border-on-light);
+}
+body.bean-app .auth-card .btn-ghost:hover { background: rgba(0, 0, 0, 0.04); border-color: rgba(0, 0, 0, 0.18); }
+body.bean-app .auth-disclaimer {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--text-on-light-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* === Bottom navigation === */
+body.bean-app .bean-nav {
+  position: fixed;
+  bottom: calc(8px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 16px);
+  max-width: 464px;
+  height: 60px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-on-dark);
+  border-radius: 999px;
+  display: flex;
+  align-items: stretch;
+  padding: 6px;
+  gap: 4px;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-on-dark);
+  z-index: 50;
+}
+body.bean-app .bean-nav-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: var(--text-on-dark-muted);
+  font-family: var(--bean-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  text-decoration: none;
+}
+body.bean-app .bean-nav-tab svg { width: 22px; height: 22px; display: block; }
+body.bean-app .bean-nav-tab.active {
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+}
+
+/* === Tab views === */
+body.bean-app .bean-page {
+  padding: 28px 24px 100px;
+  min-height: 100vh;
+}
+body.bean-app .bean-page-h {
+  font-family: var(--bean-display);
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--text-on-dark);
+}
+body.bean-app .bean-page-sub {
+  font-size: 14px;
+  color: var(--text-on-dark-muted);
+}
+
+/* ============================================================
+   THE BEAN — You tab (Phase 2)
+   ============================================================ */
+body.bean-app .you-page { padding: 24px 16px 100px; display: flex; flex-direction: column; gap: 16px; }
+
+/* Generic card containers */
+body.bean-app .you-card {
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+body.bean-app .you-card-dark {
+  background: var(--bg-alt);
+  color: var(--text-on-dark);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Eyebrows */
+body.bean-app .you-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  margin-bottom: 10px;
+}
+body.bean-app .you-card-dark .you-eyebrow { color: var(--text-on-dark-muted); }
+body.bean-app .you-eyebrow-yellow { color: var(--accent-yellow); }
+body.bean-app .you-eyebrow-dark { color: rgba(64, 36, 2, 0.7); }
+body.bean-app .you-card-h {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--text-on-dark);
+  margin-bottom: 10px;
+}
+body.bean-app .you-card-h-light {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--text-on-light);
+  margin-bottom: 10px;
+}
+body.bean-app .you-empty {
+  font-size: 13px;
+  color: var(--text-on-light-muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+body.bean-app .you-card-dark .you-empty { color: var(--text-on-dark-muted); }
+
+/* 1. Profile header */
+body.bean-app .you-profile { padding: 18px 20px 20px; }
+body.bean-app .you-profile-actions {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 6px;
+}
+body.bean-app .you-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-on-light-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.bean-app .you-icon-btn:hover { background: rgba(0, 0, 0, 0.05); color: var(--text-on-light); }
+body.bean-app .you-icon-btn svg { width: 18px; height: 18px; }
+body.bean-app .you-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 60px;
+}
+body.bean-app .you-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-family: var(--bean-display);
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.bean-app .you-profile-meta { flex: 1; min-width: 0; }
+body.bean-app .you-name {
+  font-family: var(--bean-display);
+  font-size: 20px;
+  line-height: 1.1;
+  color: var(--text-on-light);
+}
+body.bean-app .you-profile-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+body.bean-app .you-pill-trophy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border-radius: 999px;
+  padding: 3px 9px 3px 7px;
+  font-size: 11px;
+  font-weight: 500;
+}
+body.bean-app .you-pill-trophy svg { width: 12px; height: 12px; }
+body.bean-app .you-joined {
+  font-size: 10px;
+  color: var(--text-on-light-muted);
+}
+body.bean-app .you-bio {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--text-on-light-muted);
+  line-height: 1.5;
+}
+
+/* 2. Streak */
+body.bean-app .you-streak { padding: 18px 20px; }
+body.bean-app .you-streak-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+body.bean-app .you-streak-num {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--accent-yellow);
+}
+body.bean-app .you-streak-num svg { width: 24px; height: 24px; align-self: center; }
+body.bean-app .you-streak-value {
+  font-family: var(--bean-display);
+  font-size: 36px;
+  line-height: 1;
+  color: var(--text-on-dark);
+}
+body.bean-app .you-streak-label {
+  font-size: 13px;
+  color: var(--text-on-dark-muted);
+}
+body.bean-app .you-streak-best {
+  font-size: 12px;
+  color: var(--text-on-dark-muted);
+}
+body.bean-app .you-streak-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+body.bean-app .you-streak-cell {
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+body.bean-app .you-streak-cell.is-today { background: rgba(245, 200, 66, 0.08); border: 1px solid rgba(245, 200, 66, 0.3); }
+body.bean-app .you-streak-letter {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+}
+body.bean-app .you-streak-tick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+body.bean-app .you-streak-empty {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+
+/* 3. Log CTA */
+body.bean-app .you-log-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-family: var(--bean-body);
+  font-weight: 500;
+  font-size: 16px;
+  border: 0;
+  border-radius: 999px;
+  height: 56px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 4px 16px rgba(245, 200, 66, 0.25);
+}
+body.bean-app .you-log-cta:hover { background: var(--accent-yellow-deep); }
+body.bean-app .you-log-cta:active { transform: translateY(1px); }
+body.bean-app .you-log-cta svg { width: 20px; height: 20px; }
+
+/* 4. Recommended */
+body.bean-app .you-recommended { padding: 16px; }
+body.bean-app .you-rec-photo {
+  height: 160px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.06);
+  margin-bottom: 14px;
+}
+body.bean-app .you-rec-name {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--text-on-light);
+  margin-bottom: 6px;
+}
+body.bean-app .you-rec-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-on-light-muted);
+  margin-bottom: 14px;
+}
+body.bean-app .you-rec-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+body.bean-app .you-stat {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+body.bean-app .you-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+}
+body.bean-app .you-stat-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-on-light);
+}
+body.bean-app .you-rec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+body.bean-app .you-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-yellow-soft);
+  color: var(--accent-yellow-deep);
+}
+body.bean-app .you-rec-cta {
+  display: block;
+  width: 100%;
+  height: 48px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+body.bean-app .you-rec-cta:hover { background: var(--accent-yellow-deep); }
+
+/* 5. Palate */
+body.bean-app .you-palate-bars { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+body.bean-app .you-palate-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+}
+body.bean-app .you-palate-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-on-dark);
+  text-transform: capitalize;
+}
+body.bean-app .you-palate-track {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+body.bean-app .you-palate-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-yellow-deep), var(--accent-yellow));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+body.bean-app .you-palate-pct {
+  font-size: 11px;
+  color: var(--text-on-dark-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+body.bean-app .you-palate-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-on-dark);
+}
+body.bean-app .you-palate-bottom .stat-tile .label { color: var(--text-on-dark-muted); }
+body.bean-app .you-palate-bottom .stat-tile .value { font-size: 14px; line-height: 1.2; }
+
+/* 6. Past brews */
+body.bean-app .you-past { padding: 18px 20px; }
+body.bean-app .you-past-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+body.bean-app .you-past-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-on-light);
+}
+body.bean-app .you-past-row:last-child { border-bottom: 0; }
+body.bean-app .you-past-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+body.bean-app .you-past-meta { flex: 1; min-width: 0; }
+body.bean-app .you-past-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-on-light);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.bean-app .you-past-sub {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+  margin-top: 1px;
+}
+body.bean-app .you-past-stars {
+  display: inline-flex;
+  gap: 1px;
+  flex-shrink: 0;
+}
+body.bean-app .you-past-stars svg { width: 13px; height: 13px; }
+body.bean-app .you-view-all {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent-yellow-deep);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+body.bean-app .you-view-all:hover { text-decoration: underline; }
+
+/* 7. Grind score */
+body.bean-app .you-grindscore {
+  background: linear-gradient(135deg, var(--accent-yellow-soft) 0%, var(--accent-yellow) 100%);
+  color: #412402;
+  text-align: left;
+  padding: 22px 20px;
+}
+body.bean-app .you-grindscore-num {
+  font-family: var(--bean-display);
+  font-size: 48px;
+  line-height: 1;
+  color: #412402;
+  margin: 4px 0 6px;
+}
+body.bean-app .you-grindscore-sub {
+  font-size: 13px;
+  color: rgba(64, 36, 2, 0.78);
+  margin-bottom: 10px;
+}
+body.bean-app .you-grindscore-explain {
+  font-size: 12px;
+  color: rgba(64, 36, 2, 0.7);
+  text-decoration: underline;
+}
+
+/* 8. Recipes link */
+body.bean-app .you-recipes-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.bean-app .you-recipes-link:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); }
+body.bean-app .you-recipes-text { flex: 1; min-width: 0; }
+body.bean-app .you-recipes-h {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  color: var(--text-on-light);
+}
+body.bean-app .you-recipes-sub {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+  margin-top: 3px;
+}
+body.bean-app .you-recipes-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-on-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.bean-app .you-recipes-arrow svg { width: 18px; height: 18px; }
+
+/* 9. Devices */
+body.bean-app .you-device-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
+body.bean-app .you-device-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-on-light);
+}
+body.bean-app .you-device-row:last-child { border-bottom: 0; padding-bottom: 0; }
+body.bean-app .you-device-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+body.bean-app .you-device-meta { flex: 1; min-width: 0; }
+body.bean-app .you-device-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-on-light);
+}
+body.bean-app .you-device-status {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 8px;
+}
+body.bean-app .you-device-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4F7B5C;
+  display: inline-block;
+}
+body.bean-app .you-device-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+body.bean-app .you-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid var(--border-on-light);
+  border-radius: 999px;
+  color: var(--text-on-light);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--bean-body);
+}
+body.bean-app .you-ghost-btn:hover { background: rgba(0, 0, 0, 0.04); border-color: rgba(0, 0, 0, 0.18); }
+body.bean-app .you-ghost-btn svg { width: 14px; height: 14px; }
+body.bean-app .you-pair-cta {
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  border: 1px dashed var(--border-on-light);
+  border-radius: 999px;
+  color: var(--text-on-light-muted);
+  font-family: var(--bean-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+body.bean-app .you-pair-cta:hover {
+  border-color: var(--accent-yellow-deep);
+  color: var(--text-on-light);
+  border-style: solid;
+}
+
+/* 10. Achievements */
+body.bean-app .you-achievements-sub {
+  font-size: 12px;
+  color: var(--text-on-dark-muted);
+  margin-bottom: 14px;
+}
+body.bean-app .you-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+body.bean-app .you-badge {
+  background: transparent;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: var(--bean-body);
+}
+body.bean-app .you-badge-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.bean-app .you-badge.unlocked .you-badge-icon {
+  background: linear-gradient(135deg, var(--accent-yellow) 0%, var(--accent-yellow-deep) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(245, 200, 66, 0.35);
+}
+body.bean-app .you-badge.locked .you-badge-icon {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-on-dark-muted);
+  border: 1px solid var(--border-on-dark);
+}
+body.bean-app .you-badge-icon svg { width: 28px; height: 28px; display: block; }
+body.bean-app .you-badge-label {
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.25;
+}
+body.bean-app .you-badge.unlocked .you-badge-label { color: var(--text-on-dark); }
+body.bean-app .you-badge.locked .you-badge-label { color: var(--text-on-dark-muted); }
+
+/* ============================================================
+   Brew log modal (You tab)
+   ============================================================ */
+body.bean-app .brewlog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 31, 20, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  padding: 16px;
+}
+body.bean-app .brewlog-backdrop.open { opacity: 1; }
+body.bean-app .brewlog-card {
+  position: relative;
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 20px;
+  padding: 20px;
+  width: 360px;
+  max-width: 100%;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  transform: translateY(8px);
+  transition: transform 0.22s ease;
+}
+body.bean-app .brewlog-backdrop.open .brewlog-card { transform: translateY(0); }
+body.bean-app .brewlog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+body.bean-app .brewlog-title {
+  font-family: var(--bean-display);
+  font-size: 24px;
+  color: var(--text-on-light);
+  line-height: 1.1;
+}
+body.bean-app .brewlog-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 0;
+  color: var(--text-on-light-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.bean-app .brewlog-close:hover { background: rgba(0, 0, 0, 0.05); color: var(--text-on-light); }
+body.bean-app .brewlog-close svg { width: 16px; height: 16px; }
+body.bean-app .brewlog-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text-on-light-muted);
+  margin: 14px 0 6px;
+}
+body.bean-app .brewlog-input {
+  width: 100%;
+  height: 40px;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid var(--border-on-light);
+  border-radius: 8px;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  color: var(--text-on-light);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+body.bean-app .brewlog-input:focus { border-color: var(--accent-yellow-deep); }
+body.bean-app .brewlog-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid var(--border-on-light);
+  border-radius: 8px;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  color: var(--text-on-light);
+  resize: vertical;
+  min-height: 70px;
+  box-sizing: border-box;
+  outline: none;
+}
+body.bean-app .brewlog-textarea:focus { border-color: var(--accent-yellow-deep); }
+body.bean-app .brewlog-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+body.bean-app .brewlog-pill {
+  font-family: var(--bean-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-on-light);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+body.bean-app .brewlog-pill:hover { background: rgba(0, 0, 0, 0.06); }
+body.bean-app .brewlog-pill.active {
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border-color: var(--accent-yellow-deep);
+}
+body.bean-app .brewlog-rating {
+  display: flex;
+  gap: 4px;
+}
+body.bean-app .brewlog-star {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.18);
+  padding: 2px;
+}
+body.bean-app .brewlog-star svg { width: 28px; height: 28px; }
+body.bean-app .brewlog-star.on { color: var(--accent-yellow); }
+body.bean-app .brewlog-save {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 18px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+body.bean-app .brewlog-save:hover { background: var(--accent-yellow-deep); }
+
+/* Pair-device modal */
+body.bean-app .pair-card { text-align: center; padding: 28px 24px; }
+body.bean-app .pair-icon { font-size: 2.4rem; margin-bottom: 12px; }
+body.bean-app .pair-body {
+  font-size: 13px;
+  color: var(--text-on-light-muted);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   THE BEAN — Feed tab (Phase 3)
+   ============================================================ */
+body.bean-app .feed-page {
+  padding: 0 0 100px;
+  position: relative;
+}
+
+/* Sticky header — title + search + filter pills */
+body.bean-app .feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-base);
+  padding: 24px 16px 12px;
+  border-bottom: 1px solid var(--border-on-dark);
+}
+body.bean-app .feed-title {
+  font-family: var(--bean-display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-on-dark);
+  margin-bottom: 14px;
+}
+body.bean-app .feed-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-alt);
+  border-radius: 999px;
+  height: 44px;
+  padding: 0 16px;
+  gap: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-on-dark);
+}
+body.bean-app .feed-search svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-on-dark-muted);
+  flex-shrink: 0;
+}
+body.bean-app .feed-search-input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  color: var(--text-on-dark);
+  padding: 0;
+}
+body.bean-app .feed-search-input::placeholder { color: var(--text-on-dark-muted); }
+body.bean-app .feed-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+body.bean-app .feed-filter-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+body.bean-app .feed-filter-pills::-webkit-scrollbar { display: none; }
+body.bean-app .feed-filter-pill {
+  flex-shrink: 0;
+  background: transparent;
+  color: var(--text-on-dark);
+  border: 1px solid var(--border-on-dark);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--bean-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+body.bean-app .feed-filter-pill:hover { background: rgba(255, 255, 255, 0.04); }
+body.bean-app .feed-filter-pill.active {
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border-color: var(--accent-yellow-deep);
+}
+
+/* Posts list */
+body.bean-app .feed-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body.bean-app .feed-empty {
+  font-size: 14px;
+  color: var(--text-on-dark-muted);
+  text-align: center;
+  padding: 48px 16px;
+}
+
+/* Post card */
+body.bean-app .feed-post {
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body.bean-app .feed-post-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+body.bean-app .feed-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: var(--bean-display);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+body.bean-app .feed-meta { flex: 1; min-width: 0; }
+body.bean-app .feed-handle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-on-light);
+  line-height: 1.1;
+}
+body.bean-app .feed-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+body.bean-app .feed-tier-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+body.bean-app .feed-dot {
+  color: var(--text-on-light-muted);
+  font-size: 11px;
+}
+body.bean-app .feed-time {
+  font-size: 11px;
+  color: var(--text-on-light-muted);
+}
+body.bean-app .feed-bookmark-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-light-muted);
+  flex-shrink: 0;
+}
+body.bean-app .feed-bookmark-btn svg { width: 18px; height: 18px; }
+body.bean-app .feed-bookmark-btn.on { color: var(--accent-yellow-deep); }
+body.bean-app .feed-bookmark-btn:hover { color: var(--text-on-light); }
+body.bean-app .feed-bookmark-btn.on:hover { color: var(--accent-yellow); }
+
+body.bean-app .feed-post-title {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--text-on-light);
+}
+
+body.bean-app .feed-content {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-on-light);
+}
+
+body.bean-app .feed-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+body.bean-app .feed-stat {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+body.bean-app .feed-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+}
+body.bean-app .feed-stat-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-on-light);
+}
+body.bean-app .feed-recipe-instr {
+  font-size: 13px;
+  color: var(--text-on-light-muted);
+  line-height: 1.5;
+}
+
+body.bean-app .feed-shop-visited {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-on-light);
+}
+body.bean-app .feed-shop-visited svg { width: 14px; height: 14px; color: var(--accent-yellow-deep); flex-shrink: 0; }
+body.bean-app .feed-shop-feat-row { display: flex; }
+body.bean-app .feed-shop-feat-pill {
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+body.bean-app .feed-photo {
+  height: 200px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.bean-app .feed-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+body.bean-app .feed-tag-pill {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-on-light-muted);
+}
+
+/* Engagement row */
+body.bean-app .feed-eng {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-on-light);
+  margin-top: 4px;
+}
+body.bean-app .feed-eng-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 6px 4px;
+  color: var(--text-on-light-muted);
+  font-family: var(--bean-body);
+}
+body.bean-app .feed-eng-btn svg { width: 18px; height: 18px; }
+body.bean-app .feed-eng-btn.on { color: var(--accent-yellow-deep); }
+body.bean-app .feed-eng-btn:hover { color: var(--text-on-light); }
+body.bean-app .feed-eng-btn.on:hover { color: var(--accent-yellow); }
+body.bean-app .feed-eng-count {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Create FAB */
+body.bean-app .feed-fab {
+  position: fixed;
+  bottom: calc(88px + env(safe-area-inset-bottom));
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(245, 200, 66, 0.4), 0 2px 8px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+body.bean-app .feed-fab:hover { background: var(--accent-yellow-deep); }
+body.bean-app .feed-fab:active { transform: scale(0.95); }
+body.bean-app .feed-fab svg { width: 24px; height: 24px; }
+@media (min-width: 480px) {
+  /* Pin the FAB to the right edge of the 480px frame, not the viewport */
+  body.bean-app .feed-fab { right: calc(50% - 240px + 24px); }
+}
+
+/* Hint that pasted divs from create modal don't poke through */
+body.bean-app .feed-cm-fields { display: block; }
+
+/* ============================================================
+   THE BEAN — Learn tab (Phase 4)
+   ============================================================ */
+body.bean-app .learn-page {
+  padding: 24px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 1. Header card */
+body.bean-app .learn-header-card {
+  background: var(--bg-alt);
+  color: var(--text-on-dark);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border-on-dark);
+}
+body.bean-app .learn-tier-name {
+  font-family: var(--bean-display);
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--text-on-dark);
+  margin: 4px 0 6px;
+}
+body.bean-app .learn-tier-sub {
+  font-size: 12px;
+  color: var(--text-on-dark-muted);
+  margin-bottom: 12px;
+}
+body.bean-app .learn-tier-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+body.bean-app .learn-tier-fill {
+  height: 100%;
+  background: var(--accent-yellow);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+body.bean-app .learn-tier-foot {
+  font-size: 11px;
+  color: var(--text-on-dark-muted);
+}
+
+/* 2. Tracks */
+body.bean-app .learn-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body.bean-app .learn-track {
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+body.bean-app .learn-track-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 4px;
+}
+body.bean-app .learn-track-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.bean-app .learn-track-icon svg { width: 22px; height: 22px; display: block; }
+body.bean-app .learn-track-meta { flex: 1; min-width: 0; }
+body.bean-app .learn-track-title {
+  font-family: var(--bean-display);
+  font-size: 20px;
+  line-height: 1.1;
+  color: var(--text-on-light);
+}
+body.bean-app .learn-track-sub {
+  font-size: 11px;
+  color: var(--text-on-light-muted);
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+body.bean-app .learn-track-mini-bar {
+  width: 60px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+body.bean-app .learn-track-mini-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+body.bean-app .learn-lesson-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 8px 16px 16px;
+}
+body.bean-app .learn-lesson-card {
+  position: relative;
+  height: 110px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-on-light);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--bean-body);
+  color: var(--text-on-light);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.bean-app .learn-lesson-card:hover {
+  border-color: var(--accent-yellow-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+body.bean-app .learn-lesson-card.learn-state-locked {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+body.bean-app .learn-lesson-card.learn-state-locked:hover {
+  border-color: var(--border-on-light);
+  transform: none;
+  box-shadow: none;
+}
+body.bean-app .learn-lesson-card.learn-state-completed {
+  background: #F1F8F2;
+  border-color: rgba(93, 170, 110, 0.3);
+}
+body.bean-app .learn-lesson-status {
+  align-self: flex-start;
+}
+body.bean-app .learn-lesson-status svg { width: 24px; height: 24px; display: block; }
+body.bean-app .learn-lesson-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-on-light);
+  margin-top: 4px;
+}
+body.bean-app .learn-lesson-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+body.bean-app .learn-lesson-state {
+  font-size: 10px;
+  color: var(--text-on-light-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.bean-app .learn-lesson-xp {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  padding: 3px 7px;
+  border-radius: 999px;
+}
+body.bean-app .learn-lesson-card.learn-state-completed .learn-lesson-xp {
+  background: rgba(93, 170, 110, 0.2);
+  color: #2F6A40;
+}
+
+/* Locked-card horizontal shake */
+@keyframes learn-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+body.bean-app .learn-lesson-card.shake { animation: learn-shake 0.32s ease; }
+
+/* 3. Certifications */
+body.bean-app .learn-certs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body.bean-app .learn-certs-h {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  color: var(--text-on-dark);
+  margin-bottom: 4px;
+}
+body.bean-app .learn-cert-card {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+body.bean-app .learn-cert-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+}
+body.bean-app .learn-cert-title {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  color: var(--text-on-light);
+  line-height: 1.15;
+}
+body.bean-app .learn-cert-sub {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+  line-height: 1.45;
+}
+body.bean-app .learn-cert-prog-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+body.bean-app .learn-cert-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+body.bean-app .learn-cert-fill {
+  height: 100%;
+  background: var(--accent-yellow);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+body.bean-app .learn-cert-count {
+  font-size: 11px;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+body.bean-app .learn-cert-cta {
+  margin-top: 6px;
+  padding: 10px 16px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s ease;
+}
+body.bean-app .learn-cert-cta:hover { background: var(--accent-yellow-deep); }
+body.bean-app .learn-cert-earned {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-yellow-deep);
+}
+body.bean-app .learn-cert-earned svg { width: 18px; height: 18px; }
+
+/* Locked overlay */
+body.bean-app .learn-cert-card.is-locked .learn-cert-eyebrow,
+body.bean-app .learn-cert-card.is-locked .learn-cert-title,
+body.bean-app .learn-cert-card.is-locked .learn-cert-sub,
+body.bean-app .learn-cert-card.is-locked .learn-cert-prog-row {
+  opacity: 0.4;
+}
+body.bean-app .learn-cert-lock {
+  position: absolute;
+  inset: 0;
+  background: rgba(168, 159, 142, 0.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+  pointer-events: none;
+}
+body.bean-app .learn-cert-lock svg { width: 24px; height: 24px; color: var(--text-on-light-muted); }
+
+/* Lesson modal */
+body.bean-app .learn-modal-card {
+  max-width: 420px;
+  padding: 24px;
+}
+body.bean-app .learn-modal-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-yellow-deep);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+body.bean-app .learn-modal-title {
+  font-family: var(--bean-display);
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--text-on-light);
+  margin-bottom: 14px;
+  padding-right: 32px;
+}
+body.bean-app .learn-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+body.bean-app .learn-modal-body p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-on-light);
+}
+body.bean-app .learn-modal-cta { margin-top: 0; }
+body.bean-app .learn-modal-cta.is-done {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-on-light-muted);
+  cursor: default;
+}
+body.bean-app .learn-modal-cta.is-done:hover { background: rgba(0, 0, 0, 0.06); }
+body.bean-app .learn-modal-close-text {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background: transparent;
+  border: 0;
+  font-family: var(--bean-body);
+  font-size: 13px;
+  color: var(--text-on-light-muted);
+  cursor: pointer;
+  text-align: center;
+}
+body.bean-app .learn-modal-close-text:hover { color: var(--text-on-light); }
+
+/* ============================================================
+   THE BEAN — Passport tab (Phase 5)
+   ============================================================ */
+body.bean-app .passport-page {
+  padding: 0 0 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sticky header */
+body.bean-app .pp-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-base);
+  padding: 24px 16px 12px;
+  border-bottom: 1px solid var(--border-on-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body.bean-app .pp-title {
+  font-family: var(--bean-display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-on-dark);
+}
+
+/* Stats row */
+body.bean-app .pp-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+body.bean-app .pp-stat {
+  background: var(--bg-alt);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--border-on-dark);
+}
+body.bean-app .pp-stat-icon {
+  color: var(--accent-yellow);
+}
+body.bean-app .pp-stat-icon svg { width: 18px; height: 18px; display: block; }
+body.bean-app .pp-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+  font-weight: 500;
+}
+body.bean-app .pp-stat-value {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-on-dark);
+  margin-top: 2px;
+}
+
+/* View toggle */
+body.bean-app .pp-view-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+  align-self: flex-start;
+}
+body.bean-app .pp-view-pill {
+  background: transparent;
+  border: 0;
+  padding: 7px 18px;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-on-dark-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+body.bean-app .pp-view-pill.active {
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+}
+
+/* Controls (search + Near Me + filters) */
+body.bean-app .pp-controls {
+  padding: 12px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body.bean-app .pp-search-row {
+  display: flex;
+  gap: 8px;
+}
+body.bean-app .pp-search {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-alt);
+  border-radius: 999px;
+  height: 44px;
+  padding: 0 16px;
+  gap: 10px;
+  border: 1px solid var(--border-on-dark);
+}
+body.bean-app .pp-search svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-on-dark-muted);
+  flex-shrink: 0;
+}
+body.bean-app .pp-search-input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: var(--bean-body);
+  font-size: 14px;
+  color: var(--text-on-dark);
+}
+body.bean-app .pp-search-input::placeholder { color: var(--text-on-dark-muted); }
+body.bean-app .pp-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+body.bean-app .pp-near-pill {
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 14px;
+  background: transparent;
+  border: 1px solid var(--border-on-dark);
+  border-radius: 999px;
+  color: var(--text-on-dark);
+  font-family: var(--bean-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+body.bean-app .pp-near-pill svg { width: 14px; height: 14px; color: var(--accent-yellow); }
+body.bean-app .pp-near-pill:hover { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.16); }
+
+body.bean-app .pp-filter-pills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+body.bean-app .pp-filter-pills::-webkit-scrollbar { display: none; }
+body.bean-app .pp-filter-pill {
+  flex-shrink: 0;
+  background: transparent;
+  color: var(--text-on-dark);
+  border: 1px solid var(--border-on-dark);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-family: var(--bean-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+body.bean-app .pp-filter-pill.active {
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border-color: var(--accent-yellow-deep);
+}
+
+/* Stage holds either map or list */
+body.bean-app .pp-stage {
+  padding: 12px 16px 0;
+  flex: 1;
+}
+
+/* Map view */
+body.bean-app .pp-map-wrap {
+  position: relative;
+  height: calc(100vh - 340px);
+  min-height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-on-dark);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+body.bean-app .pp-map { width: 100%; height: 100%; background: var(--bg-alt); }
+
+/* Photo-based cafe markers (Phase 5b) */
+body.bean-app .cafe-marker-wrap,
+body.bean-app .cafe-cluster-wrap { background: transparent !important; border: 0 !important; }
+body.bean-app .cafe-marker {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+body.bean-app .cafe-marker:hover { transform: scale(1.08); }
+body.bean-app .cafe-marker-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+body.bean-app .cafe-marker.visited .cafe-marker-photo {
+  box-shadow: 0 0 0 3px #F5C842, 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+body.bean-app .cafe-marker-star {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: #F5C842;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+body.bean-app .cafe-marker-star svg { width: 10px; height: 10px; display: block; }
+
+/* Cluster bubble for the Hanover/Norwich trio at low zoom */
+body.bean-app .cafe-cluster {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #F5C842;
+  color: #1A1F14;
+  border: 3px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--bean-display);
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 200, 66, 0.5), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.18s ease;
+  box-sizing: border-box;
+}
+body.bean-app .cafe-cluster:hover { transform: scale(1.05); }
+
+/* Floating legend (4 rows: visited / not visited / top match / journey) */
+body.bean-app .pp-legend {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 8px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-on-light);
+  z-index: 401;
+  pointer-events: none;
+}
+body.bean-app .pp-legend-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+body.bean-app .pp-legend-swatch {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+body.bean-app .pp-legend-visited {
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 2px #F5C842;
+  /* Slightly bigger to read inside the box-shadow ring */
+  width: 12px;
+  height: 12px;
+  margin: 1px;
+}
+body.bean-app .pp-legend-not-visited {
+  background: rgba(0, 0, 0, 0.06);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  width: 12px;
+  height: 12px;
+  margin: 1px;
+}
+body.bean-app .pp-legend-star {
+  background: #F5C842;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+body.bean-app .pp-legend-line {
+  width: 18px;
+  height: 0;
+  border-radius: 0;
+  border-top: 2px dashed #F5C842;
+  background: transparent;
+  align-self: center;
+}
+
+/* List view */
+body.bean-app .pp-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+}
+body.bean-app .pp-empty {
+  font-size: 14px;
+  color: var(--text-on-dark-muted);
+  text-align: center;
+  padding: 32px 0;
+}
+body.bean-app .pp-list-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 16px;
+  padding: 12px;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--bean-body);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.bean-app .pp-list-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+body.bean-app .pp-list-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+body.bean-app .pp-list-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+body.bean-app .pp-list-name {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--text-on-light);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.bean-app .pp-list-loc {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+}
+body.bean-app .pp-list-drinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+body.bean-app .pp-list-drink {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-on-light);
+  white-space: nowrap;
+}
+body.bean-app .pp-list-drink-more { background: rgba(245, 200, 66, 0.18); color: var(--accent-yellow-deep); }
+body.bean-app .pp-list-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+body.bean-app .pp-list-visited-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+body.bean-app .pp-list-visited-pill svg { width: 11px; height: 11px; }
+body.bean-app .pp-list-stars { display: inline-flex; gap: 1px; }
+body.bean-app .pp-list-stars svg { width: 11px; height: 11px; }
+
+/* Cafe detail modal (bottom-sheet within the 480px frame) */
+body.bean-app .pp-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 31, 20, 0.65);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+body.bean-app .pp-detail-backdrop.open { opacity: 1; }
+body.bean-app .pp-detail-card {
+  position: relative;
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border-radius: 24px 24px 0 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+  transform: translateY(100%);
+  transition: transform 0.22s ease;
+}
+body.bean-app .pp-detail-backdrop.open .pp-detail-card { transform: translateY(0); }
+body.bean-app .pp-detail-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.85);
+}
+body.bean-app .pp-detail-hero {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.06);
+  margin-bottom: 14px;
+}
+body.bean-app .pp-detail-name {
+  font-family: var(--bean-display);
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--text-on-light);
+  margin-bottom: 4px;
+  padding-right: 40px;
+}
+body.bean-app .pp-detail-loc {
+  font-size: 14px;
+  color: var(--text-on-light-muted);
+  margin-bottom: 8px;
+}
+body.bean-app .pp-detail-topmatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+body.bean-app .pp-detail-topmatch svg { width: 12px; height: 12px; }
+
+body.bean-app .pp-detail-rlabel {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text-on-light-muted);
+  margin: 14px 0 6px;
+}
+body.bean-app .pp-detail-rname {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-on-light);
+}
+body.bean-app .pp-detail-drinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+body.bean-app .pp-detail-drink {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-on-light);
+}
+body.bean-app .pp-detail-story {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent-yellow-deep);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+body.bean-app .pp-detail-story:hover { text-decoration: underline; }
+
+body.bean-app .pp-detail-visit {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-on-light);
+}
+body.bean-app .pp-detail-visited-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2F6A40;
+  margin-bottom: 10px;
+}
+body.bean-app .pp-detail-visited-line svg {
+  width: 16px;
+  height: 16px;
+  color: #5DAA6E;
+}
+body.bean-app .pp-detail-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+body.bean-app .pp-detail-star {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.18);
+  padding: 2px;
+}
+body.bean-app .pp-detail-star svg { width: 26px; height: 26px; }
+body.bean-app .pp-detail-star.on { color: var(--accent-yellow); }
+body.bean-app .pp-detail-cta {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 14px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+body.bean-app .pp-detail-cta:hover { background: var(--accent-yellow-deep); }
+body.bean-app .pp-detail-remove {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #B5332A;
+  text-decoration: none;
+}
+body.bean-app .pp-detail-remove:hover { text-decoration: underline; }
+
+/* ============================================================
+   THE BEAN — You tab pruning (Phase 5b)
+   ============================================================ */
+
+/* Compact palate snapshot */
+body.bean-app .you-palate-compact { padding: 16px; }
+body.bean-app .you-palate-compact-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+body.bean-app .you-palate-link {
+  color: var(--accent-yellow);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+}
+body.bean-app .you-palate-link:hover { text-decoration: underline; }
+body.bean-app .you-palate-compact-row {
+  display: flex;
+  gap: 12px;
+}
+body.bean-app .you-palate-compact-tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+body.bean-app .you-palate-compact-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+  font-weight: 500;
+}
+body.bean-app .you-palate-compact-value {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  line-height: 1.05;
+  color: var(--text-on-dark);
+  letter-spacing: -0.01em;
+}
+body.bean-app .you-palate-compact-sub {
+  font-size: 11px;
+  color: var(--text-on-dark-muted);
+  margin-top: 2px;
+}
+body.bean-app .you-palate-empty {
+  text-align: center;
+  color: var(--text-on-dark-muted);
+}
+
+/* Badges link card */
+body.bean-app .you-badges-link {
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+body.bean-app .you-badges-link:hover { transform: translateY(-1px); }
+body.bean-app .you-badges-link-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+body.bean-app .you-badges-link-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(245, 200, 66, 0.15);
+  color: var(--accent-yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.bean-app .you-badges-link-icon svg { width: 20px; height: 20px; }
+body.bean-app .you-badges-link-meta {
+  flex: 1;
+  min-width: 0;
+}
+body.bean-app .you-badges-link-meta .you-card-h {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  margin-bottom: 2px;
+  color: var(--text-on-dark);
+}
+body.bean-app .you-badges-link-meta .you-achievements-sub {
+  margin: 0;
+}
+body.bean-app .you-badges-link-arrow {
+  width: 24px;
+  height: 24px;
+  color: var(--text-on-dark-muted);
+  flex-shrink: 0;
+}
+body.bean-app .you-badges-link-arrow svg { width: 18px; height: 18px; }
+body.bean-app .you-badges-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+body.bean-app .you-badge-strip-tile {
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.bean-app .you-badge-strip-tile.unlocked {
+  background: linear-gradient(135deg, var(--accent-yellow) 0%, var(--accent-yellow-deep) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(245, 200, 66, 0.35);
+}
+body.bean-app .you-badge-strip-tile.locked {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-on-dark);
+  color: rgba(168, 159, 142, 0.55);
+}
+body.bean-app .you-badge-strip-tile svg { width: 22px; height: 22px; }
+
+/* Badges sub-page (#/badges) */
+body.bean-app .badges-page {
+  padding: 24px 16px 100px;
+}
+body.bean-app .badges-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-on-dark-muted);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+body.bean-app .badges-back:hover { color: var(--text-on-dark); }
+body.bean-app .badges-title {
+  font-family: var(--bean-display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-on-dark);
+  margin-bottom: 4px;
+}
+body.bean-app .badges-sub {
+  font-size: 12px;
+  color: var(--text-on-dark-muted);
+  margin-bottom: 20px;
+}
+body.bean-app .badges-page-grid {
+  background: var(--bg-alt);
+  border: 1px solid var(--border-on-dark);
+  border-radius: 16px;
+  padding: 16px;
 }
 

@@ -1757,7 +1757,7 @@ function renderMagazineHome(main) {
       ),
       el('div', {
         id: 'home-atlas-map',
-        style: 'aspect-ratio:16/8;width:100%;background:#F5E6D2;border-radius:22px;overflow:hidden;outline:none;box-shadow:8px 8px 0 0 var(--ink)'
+        style: 'aspect-ratio:16/8;width:100%;background:#F5E6D2;border-radius:20px;overflow:hidden;outline:none;border:1px solid var(--hairline);box-shadow:0 4px 8px rgba(31,26,20,0.06), 0 28px 56px -28px rgba(31,26,20,0.32)'
       })
     )
   );
@@ -1988,13 +1988,13 @@ function renderMagazineHome(main) {
         ),
         el('a', {
           onclick: () => navigate('class/' + featuredClass.id),
-          style: 'display:grid;grid-template-columns:1.2fr 1fr;gap:24px;cursor:pointer;background:var(--cream);border:2px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 0 var(--ink);overflow:hidden;transition:transform 0.2s, box-shadow 0.2s',
-          onmouseenter: function() { this.style.transform = 'translate(-2px,-2px)'; this.style.boxShadow = '10px 10px 0 0 var(--ink)'; },
-          onmouseleave: function() { this.style.transform = 'translate(0,0)'; this.style.boxShadow = '8px 8px 0 0 var(--ink)'; }
+          style: 'display:grid;grid-template-columns:1.2fr 1fr;gap:24px;cursor:pointer;background:var(--paper);border:1px solid var(--hairline);border-radius:18px;box-shadow:0 1px 2px rgba(31,26,20,0.04), 0 14px 30px -16px rgba(31,26,20,0.22);overflow:hidden;transition:transform 0.2s, box-shadow 0.2s',
+          onmouseenter: function() { this.style.transform = 'translateY(-3px)'; this.style.boxShadow = '0 2px 4px rgba(31,26,20,0.06), 0 24px 44px -20px rgba(31,26,20,0.32)'; },
+          onmouseleave: function() { this.style.transform = 'translateY(0)'; this.style.boxShadow = '0 1px 2px rgba(31,26,20,0.04), 0 14px 30px -16px rgba(31,26,20,0.22)'; }
         },
           // Thumbnail
           el('div', {
-            style: 'aspect-ratio:16/10;background:' + (thumbUrl ? 'url(\'' + thumbUrl + '\') center/cover, ' : '') + '#1F1A14;position:relative;border-right:2px solid var(--ink)'
+            style: 'aspect-ratio:16/10;background:' + (thumbUrl ? 'url(\'' + thumbUrl + '\') center/cover, ' : '') + '#1F1A14;position:relative;border-right:1px solid var(--hairline)'
           },
             // Play button overlay
             el('div', {
@@ -2031,7 +2031,7 @@ function renderMagazineHome(main) {
   const phase2Section = el('section', { style: 'padding:48px 0 96px' },
     el('div', { class: 'container' },
       el('div', {
-        style: 'background:linear-gradient(135deg, var(--ink) 0%, #2A1F14 100%);color:var(--cream);border-radius:18px;border:2px solid var(--ink);box-shadow:8px 8px 0 0 var(--marigold);padding:36px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center'
+        style: 'background:linear-gradient(135deg, var(--ink) 0%, #2A1F14 100%);color:var(--cream);border-radius:20px;box-shadow:0 4px 8px rgba(31,26,20,0.10), 0 32px 64px -28px rgba(31,26,20,0.45);padding:36px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center'
       },
         // Left: copy
         el('div', {},
@@ -2213,7 +2213,7 @@ function renderMagazineHome(main) {
         },
           // Photo top
           cafeOfWeek.photoUrl ? el('div', {
-            style: 'aspect-ratio:5/3;background-image:url(\'' + cafeOfWeek.photoUrl + '\');background-size:cover;background-position:center;border-bottom:2px solid var(--ink)'
+            style: 'aspect-ratio:5/3;background-image:url(\'' + cafeOfWeek.photoUrl + '\');background-size:cover;background-position:center;border-bottom:1px solid var(--hairline)'
           }) : null,
           el('div', { style: 'padding:20px 24px 24px;display:flex;flex-direction:column;flex:1' },
             el('div', { class: 'tag', style: 'color:var(--tomato)' }, el('span', {}, '☕ Café of the week')),
@@ -2261,7 +2261,7 @@ function milkPourSmileySvg(drinkOverride) {
   const url = DRINK_CATEGORY_PHOTOS[cat] || DRINK_CATEGORY_PHOTOS.latte;
 
   const wrap = document.createElement('div');
-  wrap.style.cssText = 'width:100%;height:100%;border-radius:14px;overflow:hidden;border:1.5px solid var(--ink);box-shadow:6px 6px 0 0 var(--ink);position:relative';
+  wrap.style.cssText = 'width:100%;height:100%;border-radius:14px;overflow:hidden;border:1px solid var(--hairline);box-shadow:0 1px 2px rgba(31,26,20,0.04), 0 14px 28px -14px rgba(31,26,20,0.22);position:relative';
   const img = document.createElement('img');
   img.src = url;
   img.alt = (drink && drink.name) ? drink.name : "This week's featured brew";
@@ -4701,7 +4701,7 @@ function communityComposer() {
 
   const card = el('div', {
     class: 'card',
-    style: 'padding:18px 20px;border:2px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 0 var(--ink);background:var(--cream)'
+    style: 'padding:18px 20px;border:1px solid var(--hairline);border-radius:14px;box-shadow:0 1px 2px rgba(31,26,20,0.04), 0 14px 28px -16px rgba(31,26,20,0.18);background:var(--paper)'
   });
 
   const header = el('div', { style: 'display:flex;align-items:center;gap:14px;margin-bottom:12px' },
@@ -4716,21 +4716,23 @@ function communityComposer() {
 
   const textarea = el('textarea', {
     placeholder: "What are you brewing? Drop a tip, share a recipe, or ask the community a question...",
-    style: 'width:100%;min-height:90px;padding:12px;border:1.5px solid var(--ink);border-radius:10px;font-family:var(--font-display);font-size:15px;line-height:1.5;background:#FFFEFB;color:var(--ink);resize:vertical;outline:none;box-sizing:border-box'
+    style: 'width:100%;min-height:90px;padding:12px;border:1px solid var(--hairline);border-radius:10px;font-family:var(--font-display);font-size:15px;line-height:1.5;background:#FFFEFB;color:var(--ink);resize:vertical;outline:none;box-sizing:border-box;transition:border-color 0.15s, box-shadow 0.15s'
   });
-  textarea.addEventListener('focus', () => textarea.style.borderColor = 'var(--tomato)');
-  textarea.addEventListener('blur', () => textarea.style.borderColor = 'var(--ink)');
+  textarea.addEventListener('focus', () => { textarea.style.borderColor = 'var(--tomato)'; textarea.style.boxShadow = '0 0 0 3px rgba(232,79,26,0.12)'; });
+  textarea.addEventListener('blur', () => { textarea.style.borderColor = 'var(--hairline)'; textarea.style.boxShadow = 'none'; });
 
   const kindRow = el('div', { style: 'display:flex;gap:8px;margin-top:12px;flex-wrap:wrap' });
   const kindButtons = {};
   KINDS.forEach(k => {
     const btn = el('button', {
       type: 'button',
-      style: 'padding:8px 14px;border-radius:999px;border:1.5px solid var(--ink);background:' + (k.id === activeKind ? 'var(--marigold)' : 'transparent') + ';color:var(--ink);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 0.15s',
+      style: 'padding:8px 14px;border-radius:999px;border:1px solid ' + (k.id === activeKind ? 'transparent' : 'var(--hairline)') + ';background:' + (k.id === activeKind ? 'var(--marigold)' : 'transparent') + ';color:var(--ink);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 0.15s, border-color 0.15s',
       onclick: () => {
         activeKind = k.id;
         Object.keys(kindButtons).forEach(id => {
-          kindButtons[id].style.background = id === activeKind ? 'var(--marigold)' : 'transparent';
+          const isActive = id === activeKind;
+          kindButtons[id].style.background = isActive ? 'var(--marigold)' : 'transparent';
+          kindButtons[id].style.borderColor = isActive ? 'transparent' : 'var(--hairline)';
         });
       }
     }, k.icon + ' ' + k.label);
@@ -4740,9 +4742,9 @@ function communityComposer() {
 
   const postBtn = el('button', {
     type: 'button',
-    style: 'background:var(--ink);color:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:10px 22px;font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:0.04em;cursor:pointer;box-shadow:3px 3px 0 0 var(--marigold);transition:transform 0.15s, box-shadow 0.15s',
-    onmouseenter: function() { this.style.transform = 'translate(-1px,-1px)'; this.style.boxShadow = '4px 4px 0 0 var(--marigold)'; },
-    onmouseleave: function() { this.style.transform = 'translate(0,0)'; this.style.boxShadow = '3px 3px 0 0 var(--marigold)'; },
+    style: 'background:var(--ink);color:var(--cream);border:none;border-radius:999px;padding:11px 24px;font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:0.04em;cursor:pointer;box-shadow:0 1px 2px rgba(31,26,20,0.10), 0 8px 16px -8px rgba(31,26,20,0.32);transition:transform 0.15s, box-shadow 0.15s, background 0.15s',
+    onmouseenter: function() { this.style.transform = 'translateY(-1px)'; this.style.boxShadow = '0 2px 4px rgba(31,26,20,0.12), 0 14px 28px -10px rgba(31,26,20,0.42)'; },
+    onmouseleave: function() { this.style.transform = 'translateY(0)'; this.style.boxShadow = '0 1px 2px rgba(31,26,20,0.10), 0 8px 16px -8px rgba(31,26,20,0.32)'; },
     onclick: async (e) => {
       const text = textarea.value.trim();
       if (!text) {
@@ -6380,8 +6382,7 @@ async function boot() {
   // App shell + first render — these MUST run even if Supabase failed
   try {
     ensureDailyState();
-    mountAppShell();
-    render();
+    mountBeanApp();
   } catch (e) {
     console.error('Boot render failed', e);
     document.body.innerHTML = '<div style="padding:48px;text-align:center;font-family:Inter,sans-serif"><h1>Something went wrong loading Brew Lab.</h1><p style="color:#666">Open the developer console for details. Reload to try again.</p><pre style="text-align:left;max-width:600px;margin:24px auto;padding:16px;background:#f5f5f5;border-radius:8px;font-size:12px;overflow:auto">' + (e?.stack || e?.message || String(e)) + '</pre></div>';
@@ -6438,3 +6439,339 @@ function syncProfile() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+/* ============================================================
+   THE BEAN — redesign shell (Phase 1)
+   ============================================================
+   New mobile-first front-end that replaces the legacy Brew Lab shell.
+   Routes: #/auth, #/you, #/feed, #/learn, #/passport.
+   Localstorage user lives under 'beanapp_user' (separate from any
+   legacy keys). Existing data.js arrays are untouched and reachable
+   for future phases.
+   ============================================================ */
+
+const BEAN_USER_KEY = 'beanapp_user';
+const BEAN_BREWS_KEY = 'beanapp_brews';
+const BEAN_DEMO_SEEDED_KEY = 'beanapp_demo_seeded';
+const BEAN_TABS = [
+  { route: 'you',      label: 'You',      icon: 'user' },
+  { route: 'feed',     label: 'Feed',     icon: 'feed' },
+  { route: 'learn',    label: 'Learn',    icon: 'book' },
+  { route: 'passport', label: 'Passport', icon: 'globe' }
+];
+const BEAN_STUBS = {
+  recipes:  { title: 'Recipes',  sub: 'Phase 6 builds the recipes browser.' },
+  palate:   { title: 'Palate',   sub: 'Full palate analysis coming soon.' }
+};
+
+function getBeanUser() {
+  try { return JSON.parse(localStorage.getItem(BEAN_USER_KEY) || 'null'); }
+  catch (_) { return null; }
+}
+function setBeanUser(u) {
+  localStorage.setItem(BEAN_USER_KEY, JSON.stringify(u));
+  // First-time demo session: seed brews + lessons + cafe visits
+  if (u && u.isDemo) {
+    seedDemoBrewsIfNeeded();
+    if (typeof seedDemoLessonsIfNeeded === 'function') seedDemoLessonsIfNeeded();
+    if (typeof seedDemoVisitsIfNeeded === 'function') seedDemoVisitsIfNeeded();
+  }
+}
+function clearBeanUser() {
+  localStorage.removeItem(BEAN_USER_KEY);
+  localStorage.removeItem(BEAN_BREWS_KEY);
+  localStorage.removeItem(BEAN_DEMO_SEEDED_KEY);
+  localStorage.removeItem('beanapp_lessons');
+  localStorage.removeItem('beanapp_lessons_in_progress');
+  localStorage.removeItem('beanapp_certs');
+  localStorage.removeItem('beanapp_lessons_demo_seeded');
+  localStorage.removeItem('beanapp_visits');
+  localStorage.removeItem('beanapp_visits_demo_seeded');
+}
+
+function loadBeanBrews() {
+  try { return JSON.parse(localStorage.getItem(BEAN_BREWS_KEY) || '[]') || []; }
+  catch (_) { return []; }
+}
+function saveBeanBrews(arr) {
+  localStorage.setItem(BEAN_BREWS_KEY, JSON.stringify(arr || []));
+}
+
+/* Seed 21 brews for the demo user (9-day current streak through today,
+   6 unique origins, mixed methods, ratings 3-5, all with flavor tags).
+   Idempotent — runs once per demo session. */
+function seedDemoBrewsIfNeeded() {
+  if (localStorage.getItem(BEAN_DEMO_SEEDED_KEY)) return;
+  const today = new Date();
+  function daysAgo(n, hour) {
+    const d = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hour || 8, 30, 0, 0);
+    d.setDate(d.getDate() - n);
+    return d.toISOString();
+  }
+  const seed = [
+    // Last 9 days — active streak
+    { id: 'b001', date: daysAgo(0, 7),  method: 'Pour-over',    beanOrigin: 'Ethiopia Yirgacheffe', ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 200, flavorTags: ['floral','citrus','bright'],     rating: 5, notes: 'Best cup of the week. The lemon is so vibrant.' },
+    { id: 'b002', date: daysAgo(1, 8),  method: 'Espresso',     beanOrigin: 'Colombia Huila',       ratio: '1:2',  grindSize: 'Fine',        waterTempF: 200, flavorTags: ['chocolatey','caramel','sweet'], rating: 4, notes: '' },
+    { id: 'b003', date: daysAgo(2, 7),  method: 'Pour-over',    beanOrigin: 'Kenya AA',             ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 202, flavorTags: ['berry','fruity','bright'],      rating: 5, notes: 'Tomato-bright and clean.' },
+    { id: 'b004', date: daysAgo(3, 14), method: 'Cold brew',    beanOrigin: 'Brazil Cerrado',       ratio: '1:8',  grindSize: 'Coarse',      waterTempF: 70,  flavorTags: ['chocolatey','nutty','sweet'],   rating: 4, notes: 'Smooth.' },
+    { id: 'b005', date: daysAgo(4, 8),  method: 'Pour-over',    beanOrigin: 'Guatemala Antigua',    ratio: '1:15', grindSize: 'Medium',      waterTempF: 200, flavorTags: ['caramel','chocolatey','balanced'], rating: 4, notes: '' },
+    { id: 'b006', date: daysAgo(5, 7),  method: 'Drip',         beanOrigin: 'Colombia Huila',       ratio: '1:17', grindSize: 'Medium',      waterTempF: 200, flavorTags: ['nutty','chocolatey','balanced'],rating: 3, notes: 'Quick weekday brew.' },
+    { id: 'b007', date: daysAgo(6, 8),  method: 'Pour-over',    beanOrigin: 'Costa Rica Tarrazu',   ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 202, flavorTags: ['citrus','sweet','balanced'],    rating: 4, notes: '' },
+    { id: 'b008', date: daysAgo(7, 9),  method: 'Espresso',     beanOrigin: 'Ethiopia Yirgacheffe', ratio: '1:2',  grindSize: 'Fine',        waterTempF: 200, flavorTags: ['floral','fruity','bright'],     rating: 4, notes: 'Floral espresso surprise.' },
+    { id: 'b009', date: daysAgo(8, 7),  method: 'Pour-over',    beanOrigin: 'Kenya AA',             ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 202, flavorTags: ['berry','bright'],               rating: 4, notes: '' },
+    // Older brews (no streak)
+    { id: 'b010', date: daysAgo(11, 8), method: 'Pour-over',    beanOrigin: 'Ethiopia Yirgacheffe', ratio: '1:17', grindSize: 'Medium-fine', waterTempF: 200, flavorTags: ['floral','citrus'],              rating: 5, notes: '' },
+    { id: 'b011', date: daysAgo(13, 14),method: 'Cold brew',    beanOrigin: 'Colombia Huila',       ratio: '1:8',  grindSize: 'Coarse',      waterTempF: 70,  flavorTags: ['chocolatey','sweet'],           rating: 4, notes: '' },
+    { id: 'b012', date: daysAgo(14, 7), method: 'Espresso',     beanOrigin: 'Guatemala Antigua',    ratio: '1:2',  grindSize: 'Fine',        waterTempF: 200, flavorTags: ['caramel','chocolatey'],         rating: 3, notes: '' },
+    { id: 'b013', date: daysAgo(16, 8), method: 'French press', beanOrigin: 'Brazil Cerrado',       ratio: '1:15', grindSize: 'Coarse',      waterTempF: 200, flavorTags: ['nutty','chocolatey','earthy'],  rating: 3, notes: '' },
+    { id: 'b014', date: daysAgo(17, 9), method: 'Pour-over',    beanOrigin: 'Kenya AA',             ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 202, flavorTags: ['berry','fruity'],               rating: 4, notes: '' },
+    { id: 'b015', date: daysAgo(19, 7), method: 'Aeropress',    beanOrigin: 'Colombia Huila',       ratio: '1:14', grindSize: 'Medium',      waterTempF: 200, flavorTags: ['chocolatey','caramel'],         rating: 4, notes: '' },
+    { id: 'b016', date: daysAgo(21, 8), method: 'Pour-over',    beanOrigin: 'Ethiopia Yirgacheffe', ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 200, flavorTags: ['floral','bright'],              rating: 4, notes: '' },
+    { id: 'b017', date: daysAgo(22, 14),method: 'Cold brew',    beanOrigin: 'Costa Rica Tarrazu',   ratio: '1:8',  grindSize: 'Coarse',      waterTempF: 70,  flavorTags: ['sweet','balanced'],             rating: 3, notes: '' },
+    { id: 'b018', date: daysAgo(24, 8), method: 'Espresso',     beanOrigin: 'Brazil Cerrado',       ratio: '1:2',  grindSize: 'Fine',        waterTempF: 200, flavorTags: ['nutty','chocolatey'],           rating: 3, notes: '' },
+    { id: 'b019', date: daysAgo(25, 7), method: 'Pour-over',    beanOrigin: 'Costa Rica Tarrazu',   ratio: '1:16', grindSize: 'Medium-fine', waterTempF: 200, flavorTags: ['citrus','sweet'],               rating: 4, notes: '' },
+    { id: 'b020', date: daysAgo(26, 9), method: 'Drip',         beanOrigin: 'Guatemala Antigua',    ratio: '1:17', grindSize: 'Medium',      waterTempF: 200, flavorTags: ['caramel','balanced'],           rating: 4, notes: '' },
+    { id: 'b021', date: daysAgo(27, 8), method: 'Espresso',     beanOrigin: 'Colombia Huila',       ratio: '1:2',  grindSize: 'Fine',        waterTempF: 200, flavorTags: ['chocolatey','sweet'],           rating: 5, notes: '' }
+  ];
+  saveBeanBrews(seed);
+  localStorage.setItem(BEAN_DEMO_SEEDED_KEY, '1');
+}
+
+function beanRoute() {
+  const hash = (window.location.hash || '').replace(/^#\/?/, '');
+  return hash;
+}
+
+/* ----- Inline SVG icon library ----- */
+function beanLogoSvg(size) {
+  size = size || 64;
+  // Yellow rounded square with a white coffee cup + 2 steam wisps.
+  const svg = '<svg viewBox="0 0 64 64" width="' + size + '" height="' + size + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+    '<rect x="0" y="0" width="64" height="64" rx="12" ry="12" fill="#F5C842"/>' +
+    // Steam (two wavy lines above the cup)
+    '<path d="M24 18 q-3 -4 0 -8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
+    '<path d="M32 20 q-3 -4 0 -8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
+    '<path d="M40 18 q-3 -4 0 -8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
+    // Cup body
+    '<path d="M16 28 H44 V42 a6 6 0 0 1 -6 6 H22 a6 6 0 0 1 -6 -6 Z" fill="#FFFFFF"/>' +
+    // Handle (loops outside the cup body)
+    '<path d="M44 32 a5 5 0 0 1 0 10" stroke="#FFFFFF" stroke-width="2.6" fill="none" stroke-linecap="round"/>' +
+  '</svg>';
+  const wrap = document.createElement('span');
+  wrap.innerHTML = svg;
+  return wrap.firstElementChild;
+}
+
+const BEAN_NAV_ICONS = {
+  user:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21 a8 8 0 0 1 16 0"/></svg>',
+  feed:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5 h16 a2 2 0 0 1 2 2 v9 a2 2 0 0 1 -2 2 H8 l-4 4 V7 a2 2 0 0 1 2 -2 Z"/></svg>',
+  book:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5 a2 2 0 0 1 2 -2 h6 v17 H5 a2 2 0 0 0 -2 2 Z"/><path d="M21 5 a2 2 0 0 0 -2 -2 h-6 v17 h6 a2 2 0 0 1 2 2 Z"/></svg>',
+  globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12 h18"/><path d="M12 3 a13 13 0 0 1 0 18 a13 13 0 0 1 0 -18 Z"/></svg>'
+};
+
+/* ----- Mount + render ----- */
+function mountBeanApp() {
+  // Wipe any legacy shell elements that may have been pre-mounted.
+  document.body.innerHTML = '';
+  document.body.classList.add('bean-app');
+  document.body.classList.remove('app-bean-removed-marker');
+
+  const main = el('main', { id: 'bean-main', class: 'bean-main' });
+  document.body.appendChild(main);
+  document.body.appendChild(buildBeanNav());
+
+  window.addEventListener('hashchange', beanRender);
+  beanRender();
+}
+
+function buildBeanNav() {
+  const nav = el('nav', { id: 'bean-nav', class: 'bean-nav', 'aria-label': 'Primary' });
+  BEAN_TABS.forEach(t => {
+    const a = el('a', {
+      href: '#/' + t.route,
+      class: 'bean-nav-tab',
+      'data-route': t.route,
+      'aria-label': t.label
+    });
+    const iconWrap = document.createElement('span');
+    iconWrap.innerHTML = BEAN_NAV_ICONS[t.icon];
+    a.appendChild(iconWrap.firstElementChild);
+    a.appendChild(el('span', { class: 'bean-nav-label' }, t.label));
+    nav.appendChild(a);
+  });
+  return nav;
+}
+
+function beanRender() {
+  const route = beanRoute();
+  const user = getBeanUser();
+
+  // Routing rules: no user → force /auth. User on no/unknown route → /you.
+  if (!user && route !== 'auth') {
+    if (window.location.hash !== '#/auth') { window.location.hash = '#/auth'; return; }
+  }
+  if (user && (route === '' || route === 'auth')) {
+    if (window.location.hash !== '#/you') { window.location.hash = '#/you'; return; }
+  }
+  if (!user && route === '') { window.location.hash = '#/auth'; return; }
+
+  const main = document.getElementById('bean-main');
+  if (!main) return;
+  main.innerHTML = '';
+
+  if (route === 'auth') {
+    renderBeanAuth(main);
+  } else if (route === 'you' && typeof renderYou === 'function') {
+    renderYou(main);
+  } else if (route === 'feed' && typeof renderFeed === 'function') {
+    renderFeed(main);
+  } else if (route === 'learn' && typeof renderLearn === 'function') {
+    renderLearn(main);
+  } else if (route === 'passport' && typeof renderPassport === 'function') {
+    renderPassport(main);
+  } else if (route === 'badges' && typeof renderBadges === 'function') {
+    renderBadges(main);
+  } else if (BEAN_STUBS[route]) {
+    renderBeanStub(main, BEAN_STUBS[route]);
+  } else {
+    // Unknown route — bounce back to /you (or /auth)
+    window.location.hash = user ? '#/you' : '#/auth';
+    return;
+  }
+
+  // Hide nav on auth, show + highlight elsewhere. Sub-routes that
+  // belong to a parent tab (badges and palate sit under You) keep that
+  // parent tab highlighted in the bottom nav.
+  const SUBROUTE_PARENT = { badges: 'you', palate: 'you' };
+  const activeRoute = SUBROUTE_PARENT[route] || route;
+  const nav = document.getElementById('bean-nav');
+  if (nav) {
+    nav.style.display = route === 'auth' ? 'none' : 'flex';
+    nav.querySelectorAll('.bean-nav-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.getAttribute('data-route') === activeRoute);
+    });
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/* ----- Auth / landing ----- */
+function renderBeanAuth(main) {
+  let mode = 'signin'; // 'signin' | 'signup'
+
+  const screen = el('div', { class: 'auth-screen' });
+  screen.appendChild(beanLogoSvg(64));
+
+  screen.appendChild(el('h1', { class: 'auth-headline' },
+    'The coffee community ',
+    el('em', {}, 'in your cup')
+  ));
+  screen.appendChild(el('p', { class: 'auth-subhead' },
+    'Log your brews, level up your palate, and trade recipes with people who care about coffee as much as you do.'
+  ));
+
+  const card = el('div', { class: 'auth-card' });
+
+  // Toggle (Sign In / Create Account)
+  const toggle = el('div', { class: 'auth-toggle', role: 'tablist' });
+  const signinBtn = el('button', {
+    type: 'button',
+    class: 'auth-toggle-pill active',
+    'data-mode': 'signin',
+    onclick: () => setMode('signin')
+  }, 'Sign In');
+  const signupBtn = el('button', {
+    type: 'button',
+    class: 'auth-toggle-pill',
+    'data-mode': 'signup',
+    onclick: () => setMode('signup')
+  }, 'Create Account');
+  toggle.appendChild(signinBtn);
+  toggle.appendChild(signupBtn);
+  card.appendChild(toggle);
+
+  // Inputs
+  const emailInput = el('input', {
+    type: 'email',
+    class: 'auth-input',
+    placeholder: 'you@brew.coffee',
+    name: 'email',
+    autocomplete: 'email'
+  });
+  const passInput = el('input', {
+    type: 'password',
+    class: 'auth-input',
+    placeholder: 'your secret blend',
+    name: 'password',
+    autocomplete: 'current-password'
+  });
+  card.appendChild(emailInput);
+  card.appendChild(passInput);
+
+  // Primary submit
+  const submitBtn = el('button', {
+    type: 'button',
+    class: 'btn-primary full',
+    onclick: () => submit()
+  }, 'Sign in');
+  card.appendChild(submitBtn);
+
+  // Divider
+  card.appendChild(el('div', { class: 'auth-divider' }, 'or'));
+
+  // Demo button
+  card.appendChild(el('button', {
+    type: 'button',
+    class: 'btn-ghost full',
+    onclick: () => {
+      setBeanUser({ email: 'demo@brew.coffee', name: 'Demo Bobby', isDemo: true, createdAt: Date.now() });
+      window.location.hash = '#/you';
+    }
+  }, 'Explore as demo user'));
+
+  // Disclaimer
+  card.appendChild(el('p', { class: 'auth-disclaimer' },
+    'Brew responsibly. We’re not liable for the espresso you make at 11pm.'
+  ));
+
+  // Submit on Enter inside either input
+  [emailInput, passInput].forEach(inp => {
+    inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+  });
+
+  screen.appendChild(card);
+  main.appendChild(screen);
+
+  function setMode(m) {
+    mode = m;
+    signinBtn.classList.toggle('active', m === 'signin');
+    signupBtn.classList.toggle('active', m === 'signup');
+    submitBtn.textContent = m === 'signin' ? 'Sign in' : 'Create account';
+    passInput.setAttribute('autocomplete', m === 'signin' ? 'current-password' : 'new-password');
+  }
+
+  function submit() {
+    const email = (emailInput.value || '').trim();
+    const password = (passInput.value || '').trim();
+    if (!email || !password) {
+      // Lightweight inline validation: flash the empty input borders red briefly
+      [emailInput, passInput].forEach(inp => {
+        if (!inp.value.trim()) {
+          inp.style.borderColor = '#C9352F';
+          setTimeout(() => { inp.style.borderColor = ''; }, 900);
+        }
+      });
+      return;
+    }
+    const localPart = email.includes('@') ? email.split('@')[0] : email;
+    setBeanUser({ email: email, name: localPart, createdAt: Date.now() });
+    window.location.hash = '#/you';
+  }
+}
+
+/* ----- Tab stubs ----- */
+function renderBeanStub(main, stub) {
+  const page = el('div', { class: 'bean-page' });
+  page.appendChild(el('h1', { class: 'bean-page-h' }, stub.title));
+  page.appendChild(el('p', { class: 'bean-page-sub' }, stub.sub));
+  main.appendChild(page);
+}

@@ -6,7 +6,8 @@
   <title>Brew Lab by Cuisinart</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Cuisinart Brew House design tokens -->
+  <!-- The Bean redesign — DM Serif Display (display + italic accents) + Inter loaded via design-tokens.css -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap">
   <link rel="stylesheet" href="design-tokens.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -28,6 +29,18 @@
 <!-- App data and logic -->
 <script src="data.js"></script>
 <script src="app.js"></script>
+
+<!-- The Bean — helpers + page modules (loaded after app.js so el() exists) -->
+<script src="helpers/streak.js"></script>
+<script src="helpers/palate.js"></script>
+<script src="helpers/achievements.js"></script>
+<script src="helpers/posts.js"></script>
+<script src="helpers/learn.js"></script>
+<script src="helpers/passport.js"></script>
+<script src="pages/you.js"></script>
+<script src="pages/feed.js"></script>
+<script src="pages/learn.js"></script>
+<script src="pages/passport.js"></script>
 
 </body>
 </html>
