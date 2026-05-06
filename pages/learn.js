@@ -48,6 +48,13 @@ function renderLearn(main) {
   ));
   page.appendChild(header);
 
+  /* 1b. "Pick up where you left off" — DoorDash-style featured continue card.
+     Surfaces the most recent in-progress lesson if one exists, otherwise the
+     first not-yet-started lesson. Big photo-forward CTA above the tracks
+     grid creates a clear next action and drives engagement. */
+  const continueCard = buildContinueCard(tracks);
+  if (continueCard) page.appendChild(continueCard);
+
   /* 2. Tracks */
   const tracksSection = el('div', { class: 'learn-tracks' });
   tracks.forEach(t => tracksSection.appendChild(buildTrackBlock(t)));
@@ -57,6 +64,60 @@ function renderLearn(main) {
   page.appendChild(buildCertSection());
 
   main.appendChild(page);
+}
+
+/* "Pick up where you left off" featured card. Walks the tracks looking for
+   an in-progress lesson; falls back to the first not-yet-started lesson.
+   Returns null if everything is completed (we don't want a stale featured
+   card if the user is done). */
+function buildContinueCard(tracks) {
+  if (!tracks || !tracks.length) return null;
+  let target = null;
+  let targetTrack = null;
+  for (const t of tracks) {
+    for (const l of (t.lessons || [])) {
+      const s = getLessonState(l.id);
+      if (s === 'in-progress') { target = l; targetTrack = t; break; }
+    }
+    if (target) break;
+  }
+  if (!target) {
+    for (const t of tracks) {
+      for (const l of (t.lessons || [])) {
+        if (getLessonState(l.id) === 'unlocked') {
+          target = l; targetTrack = t; break;
+        }
+      }
+      if (target) break;
+    }
+  }
+  if (!target || !targetTrack) return null;
+  const state = getLessonState(target.id);
+  const card = el('button', {
+    type: 'button',
+    class: 'learn-continue',
+    onclick: () => openLessonModal(targetTrack, target)
+  });
+  // Color block / icon side
+  card.appendChild(el('div', {
+    class: 'learn-continue-icon',
+    style: 'background:' + (targetTrack.iconColor || '#8B4F2A')
+  }, _learnSvg(LEARN_ICONS[targetTrack.icon] || LEARN_ICONS.bean)));
+  // Body
+  const eyebrow = state === 'in-progress' ? '◆ PICK UP WHERE YOU LEFT OFF' : '◆ NEXT LESSON';
+  card.appendChild(el('div', { class: 'learn-continue-body' },
+    el('div', { class: 'learn-continue-eyebrow' }, eyebrow),
+    el('div', { class: 'learn-continue-title' }, target.title),
+    el('div', { class: 'learn-continue-meta' },
+      el('span', {}, targetTrack.title),
+      el('span', { class: 'learn-continue-dot' }),
+      el('span', {}, '+' + target.xp + ' XP')
+    )
+  ));
+  card.appendChild(el('div', { class: 'learn-continue-arrow' },
+    _learnSvg(LEARN_ICONS.play)
+  ));
+  return card;
 }
 
 function buildTrackBlock(track) {

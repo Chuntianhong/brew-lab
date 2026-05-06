@@ -87,6 +87,13 @@ function renderFeed(main) {
   header.appendChild(pills);
   root.appendChild(header);
 
+  // 1b. Top this week — Beli-style ranked highlight strip.
+  // Pulls the 3 highest-kudos posts and surfaces them as a horizontal
+  // scroll card above the main list. Drops the user into the original
+  // post on tap so it doesn't feel like a parallel feed.
+  const topStrip = buildFeedTopStrip();
+  if (topStrip) root.appendChild(topStrip);
+
   // 2. Posts list
   const list = el('div', { class: 'feed-list' });
   root.appendChild(list);
@@ -117,7 +124,7 @@ function renderFeed(main) {
 }
 
 function buildPostCard(post, kudosSet, bookmarkSet, repaint) {
-  const card = el('div', { class: 'feed-post' });
+  const card = el('div', { class: 'feed-post', 'data-post-id': post.id });
 
   // Top row: avatar + handle/tier/time + bookmark
   const top = el('div', { class: 'feed-post-top' });
@@ -241,6 +248,66 @@ function _statTile(label, value) {
     el('div', { class: 'feed-stat-label' }, label),
     el('div', { class: 'feed-stat-value' }, value || '—')
   );
+}
+
+/* ---------- Beli-style "Top this week" strip ----------
+   Returns a horizontal scroller of the 3 highest-kudos posts from the last
+   7 days. Each card shows rank, photo, author + handle, snippet, and kudos
+   count, and links into the underlying post when tapped. Returns null if
+   there aren't enough qualifying posts to make the rail look full. */
+function buildFeedTopStrip() {
+  const all = (typeof loadBeanPosts === 'function') ? loadBeanPosts() : [];
+  if (!all.length) return null;
+  const cutoff = Date.now() - 7 * 86400000;
+  const ranked = all
+    .filter(p => new Date(p.date).getTime() > cutoff)
+    .sort((a, b) => (b.kudosCount || 0) - (a.kudosCount || 0))
+    .slice(0, 3);
+  if (ranked.length < 2) return null;
+
+  const wrap = el('div', { class: 'feed-top' });
+  wrap.appendChild(el('div', { class: 'feed-top-head' },
+    el('div', { class: 'feed-top-eyebrow' }, 'TOP THIS WEEK'),
+    el('span', { class: 'feed-top-meta' }, 'Most kudos · last 7 days')
+  ));
+  const scroller = el('div', { class: 'feed-top-scroll' });
+  ranked.forEach((p, i) => scroller.appendChild(buildFeedTopCard(p, i + 1)));
+  wrap.appendChild(scroller);
+  return wrap;
+}
+
+function buildFeedTopCard(post, rank) {
+  const tile = el('button', {
+    type: 'button',
+    class: 'feed-top-card' + (rank === 1 ? ' is-first' : ''),
+    onclick: () => {
+      // Tapping a top card scrolls the user to the underlying post in the
+      // main list. We re-find by id since the list is rebuilt on each paint.
+      const target = document.querySelector('[data-post-id="' + post.id + '"]');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      else alert('Post detail coming soon');
+    }
+  });
+  // Photo or color block
+  const photo = el('div', { class: 'feed-top-photo' });
+  if (post.photoUrl) {
+    photo.style.backgroundImage = "url('" + post.photoUrl + "')";
+  } else {
+    photo.style.background = 'linear-gradient(135deg, ' + (post.authorAvatarColor || '#8B4F2A') + ' 0%, rgba(0,0,0,0.6) 100%)';
+  }
+  photo.appendChild(el('span', { class: 'feed-top-rank' }, '#' + rank));
+  tile.appendChild(photo);
+
+  // Body
+  tile.appendChild(el('div', { class: 'feed-top-body' },
+    el('div', { class: 'feed-top-author' }, post.authorHandle || post.authorName || '@member'),
+    el('div', { class: 'feed-top-snippet' }, (post.title || post.content || '').slice(0, 60).trim() + ((post.title || post.content || '').length > 60 ? '…' : '')),
+    el('div', { class: 'feed-top-foot' },
+      _svgEl2(FEED_ICONS.cup),
+      el('span', {}, String(post.kudosCount || 0) + ' kudos')
+    )
+  ));
+  return tile;
 }
 
 /* ----- Create post modal ----- */

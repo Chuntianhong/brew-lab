@@ -5286,3 +5286,541 @@ body.bean-app .badges-page-grid {
   padding: 16px;
 }
 
+/* ============================================================
+   POLISH PASS — sleeker You-tab cards.
+   Beli-style profile stats, streak momentum, refined log CTA with social
+   proof line, DoorDash-style horizontal-scroll recommendations. Layered on
+   top of the existing .you-* classes; only new selectors below.
+   ============================================================ */
+
+/* Tighten card rhythm overall — softer shadow, slightly larger radius,
+   subtle hover lift on the cream cards. */
+body.bean-app .you-card {
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 28px -16px rgba(0, 0, 0, 0.16);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+body.bean-app .you-card-dark {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20), 0 14px 28px -14px rgba(0, 0, 0, 0.45);
+}
+
+/* Profile stats strip — at-a-glance brews / best streak / badges */
+body.bean-app .you-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-on-light);
+}
+body.bean-app .you-pstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+body.bean-app .you-pstat-value {
+  font-family: var(--bean-display);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-on-light);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+body.bean-app .you-pstat-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+}
+
+/* Streak momentum bar — tells the user how close they are to the next
+   milestone. Thin track, yellow fill, single-line caption. */
+body.bean-app .you-streak-momentum {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-on-dark);
+}
+body.bean-app .you-streak-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+body.bean-app .you-streak-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-yellow-deep), var(--accent-yellow));
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+body.bean-app .you-streak-momentum-text {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-on-dark-muted);
+}
+
+/* Streak number — animated count-up reads better in a tabular-nums slot */
+body.bean-app .you-streak-value { font-variant-numeric: tabular-nums; }
+
+/* Streak cells get a smooth scale-in on the today indicator */
+body.bean-app .you-streak-cell.is-today { transition: transform 0.2s ease; }
+
+/* Log CTA wrap — adds the social-proof line under the button */
+body.bean-app .you-log-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body.bean-app .you-log-cta {
+  height: 54px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  box-shadow: 0 1px 2px rgba(245, 200, 66, 0.18), 0 12px 24px -10px rgba(245, 200, 66, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+body.bean-app .you-log-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(245, 200, 66, 0.22), 0 18px 32px -12px rgba(245, 200, 66, 0.55);
+}
+body.bean-app .you-log-cta:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(245, 200, 66, 0.18), 0 6px 14px -6px rgba(245, 200, 66, 0.40); }
+body.bean-app .you-log-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-on-dark-muted);
+  align-self: center;
+  letter-spacing: 0.01em;
+}
+body.bean-app .you-log-proof-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  box-shadow: 0 0 0 0 rgba(245, 200, 66, 0.55);
+  animation: bean-pulse 2.4s ease-in-out infinite;
+}
+@keyframes bean-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 200, 66, 0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(245, 200, 66, 0); }
+}
+
+/* DoorDash-style horizontal recommendations row.
+   The card wrapping it stays full-width, scroll-snap on the inner row,
+   first card flagged "Today's pick". */
+body.bean-app .you-recs-card { padding: 18px 0 18px 18px; }
+body.bean-app .you-recs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-right: 18px;
+  margin-bottom: 14px;
+}
+body.bean-app .you-recs-head .you-eyebrow { margin-bottom: 0; }
+body.bean-app .you-recs-meta {
+  font-size: 11px;
+  color: var(--text-on-light-muted);
+  letter-spacing: 0.02em;
+}
+body.bean-app .you-recs-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 18px;
+  padding: 4px 18px 4px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+body.bean-app .you-recs-scroll::-webkit-scrollbar { display: none; }
+body.bean-app .you-rec-tile {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+  background: #FFFFFF;
+  border: 1px solid var(--border-on-light);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 18px -10px rgba(0, 0, 0, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+body.bean-app .you-rec-tile:active { transform: scale(0.985); }
+body.bean-app .you-rec-tile.is-featured { flex-basis: 84%; }
+body.bean-app .you-rec-tile-photo {
+  position: relative;
+  aspect-ratio: 5/3;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+body.bean-app .you-rec-tile-flag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 9px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+body.bean-app .you-rec-tile-body {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+body.bean-app .you-rec-tile-name {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--text-on-light);
+  letter-spacing: -0.01em;
+}
+body.bean-app .you-rec-tile-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-on-light-muted);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+body.bean-app .you-rec-tile-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  display: inline-block;
+}
+body.bean-app .you-rec-tile-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-top: 2px;
+}
+body.bean-app .you-rec-tile-cta {
+  margin-top: auto;
+  height: 40px;
+  background: var(--text-on-light);
+  color: #FFFFFF;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--bean-body);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+body.bean-app .you-rec-tile-cta:hover { background: #2A1F14; }
+body.bean-app .you-rec-tile-cta:active { transform: translateY(1px); }
+
+/* Subtle press feedback on every tappable .you-card and bean-nav tab */
+body.bean-app .you-card:active { transform: scale(0.995); }
+body.bean-app .bean-nav-tab { transition: transform 0.12s ease, background 0.18s ease, color 0.18s ease; }
+body.bean-app .bean-nav-tab:active { transform: scale(0.92); }
+
+/* ============================================================
+   POLISH PASS — Feed tab "Top this week" strip
+   Beli-style ranked highlights — horizontal scroll, big ranks, photo cards.
+   ============================================================ */
+body.bean-app .feed-top {
+  margin: 4px -16px 12px;
+  padding: 0;
+}
+body.bean-app .feed-top-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 16px;
+  margin-bottom: 10px;
+}
+body.bean-app .feed-top-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+}
+body.bean-app .feed-top-meta {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-on-dark-muted);
+}
+body.bean-app .feed-top-scroll {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+body.bean-app .feed-top-scroll::-webkit-scrollbar { display: none; }
+body.bean-app .feed-top-card {
+  flex: 0 0 72%;
+  scroll-snap-align: start;
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20), 0 12px 24px -12px rgba(0, 0, 0, 0.40);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  font: inherit;
+}
+body.bean-app .feed-top-card:active { transform: scale(0.985); }
+body.bean-app .feed-top-card.is-first { flex-basis: 78%; }
+body.bean-app .feed-top-photo {
+  position: relative;
+  aspect-ratio: 5/3;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.18);
+}
+body.bean-app .feed-top-rank {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-family: var(--bean-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  padding: 4px 10px 3px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30);
+}
+body.bean-app .feed-top-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+body.bean-app .feed-top-author {
+  font-family: var(--bean-body);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-on-light);
+  letter-spacing: 0.005em;
+}
+body.bean-app .feed-top-snippet {
+  font-family: var(--bean-display);
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-on-light);
+  letter-spacing: -0.005em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+body.bean-app .feed-top-foot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-on-light-muted);
+}
+body.bean-app .feed-top-foot svg { width: 14px; height: 14px; }
+
+/* ============================================================
+   POLISH PASS — Learn tab "Pick up where you left off"
+   DoorDash-style featured row above tracks. Reads as the clear next step.
+   ============================================================ */
+body.bean-app .learn-continue {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent-yellow-soft) 0%, var(--accent-yellow) 100%);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 1px 2px rgba(245, 200, 66, 0.20), 0 14px 28px -14px rgba(245, 200, 66, 0.45);
+}
+body.bean-app .learn-continue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(245, 200, 66, 0.24), 0 22px 40px -16px rgba(245, 200, 66, 0.55);
+}
+body.bean-app .learn-continue:active { transform: translateY(0); }
+body.bean-app .learn-continue-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+body.bean-app .learn-continue-icon svg { width: 26px; height: 26px; }
+body.bean-app .learn-continue-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body.bean-app .learn-continue-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(64, 36, 2, 0.7);
+}
+body.bean-app .learn-continue-title {
+  font-family: var(--bean-display);
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--text-on-light);
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+body.bean-app .learn-continue-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(64, 36, 2, 0.78);
+  letter-spacing: 0.02em;
+}
+body.bean-app .learn-continue-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(64, 36, 2, 0.5);
+}
+body.bean-app .learn-continue-arrow {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--text-on-light);
+  color: var(--accent-yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+body.bean-app .learn-continue-arrow svg { width: 22px; height: 22px; }
+
+/* ============================================================
+   POLISH PASS — Passport "Next stops" rail
+   Beli-style ranked target list above the main café list. Pushes the
+   user toward their next visit with rank numbers and big photo cards.
+   ============================================================ */
+body.bean-app .pp-rail {
+  margin: 0 -16px 14px;
+}
+body.bean-app .pp-rail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 16px;
+  margin-bottom: 10px;
+}
+body.bean-app .pp-rail-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+}
+body.bean-app .pp-rail-meta {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-on-dark-muted);
+}
+body.bean-app .pp-rail-scroll {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+body.bean-app .pp-rail-scroll::-webkit-scrollbar { display: none; }
+body.bean-app .pp-rail-card {
+  flex: 0 0 64%;
+  scroll-snap-align: start;
+  background: var(--bg-card);
+  color: var(--text-on-light);
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20), 0 12px 24px -12px rgba(0, 0, 0, 0.40);
+}
+body.bean-app .pp-rail-card.is-first { flex-basis: 70%; }
+body.bean-app .pp-rail-card:active { transform: scale(0.985); }
+body.bean-app .pp-rail-photo {
+  position: relative;
+  aspect-ratio: 4/3;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.18);
+}
+body.bean-app .pp-rail-rank {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: var(--accent-yellow);
+  color: var(--text-on-light);
+  font-family: var(--bean-display);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px 3px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30);
+}
+body.bean-app .pp-rail-body {
+  padding: 12px 14px 14px;
+}
+body.bean-app .pp-rail-name {
+  font-family: var(--bean-display);
+  font-size: 16px;
+  line-height: 1.15;
+  color: var(--text-on-light);
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.bean-app .pp-rail-loc {
+  font-size: 11px;
+  color: var(--text-on-light-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+

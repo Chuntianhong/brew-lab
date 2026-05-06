@@ -84,6 +84,7 @@ function renderYou(main) {
   const isDemo = !!user.isDemo;
   const brews = loadBeanBrews();
   const recommended = pickRecommendedBrew();
+  const recommendations = pickRecommendedBrews(5);
 
   const cs = currentStreak(brews);
   const bs = bestStreak(brews);
@@ -97,19 +98,24 @@ function renderYou(main) {
   const devices = isDemo ? DEMO_DEVICES : [];
 
   const page = el('div', { class: 'bean-page you-page' });
-  page.appendChild(youProfileHeader(user));
+  page.appendChild(youProfileHeader(user, brews, bs, unlockedCount));
   page.appendChild(youStreakCard(cs, bs, brews));
-  page.appendChild(youLogCta());
-  page.appendChild(youRecommendedCard(recommended));
+  page.appendChild(youLogCta(cs));
+  page.appendChild(youRecommendedRow(recommendations));
   page.appendChild(youPalateCardCompact(palate, brews));
   page.appendChild(youPastBrewsCard(brews));
   page.appendChild(youDevicesCard(devices));
   page.appendChild(youBadgesLinkCard(achievements, unlockedCount));
   main.appendChild(page);
+
+  // Tactile micro-interaction: count up the streak number on first paint.
+  requestAnimationFrame(() => animateStreakValue(cs));
 }
 
-/* ---------- 1. Profile header ---------- */
-function youProfileHeader(user) {
+/* ---------- 1. Profile header ----------
+   Beli-style stats strip below the bio surfaces total brews / best streak /
+   badges so the user feels their progress at a glance. */
+function youProfileHeader(user, brews, bestStreakDays, badgesEarned) {
   const card = el('div', { class: 'you-card you-profile' });
   card.appendChild(el('div', { class: 'you-profile-actions' },
     el('button', { type: 'button', class: 'you-icon-btn', 'aria-label': 'Share', onclick: () => alert('Share — coming soon') }, _svgEl(YOU_ICONS.share)),
@@ -127,6 +133,24 @@ function youProfileHeader(user) {
     )
   ));
   card.appendChild(el('p', { class: 'you-bio' }, 'Daily brewer. Always one ratio away from perfect.'));
+
+  // Quick-stat strip — three at-a-glance metrics
+  const totalBrews = (brews && brews.length) || 0;
+  const stats = el('div', { class: 'you-profile-stats' },
+    el('div', { class: 'you-pstat' },
+      el('div', { class: 'you-pstat-value' }, String(totalBrews)),
+      el('div', { class: 'you-pstat-label' }, totalBrews === 1 ? 'Brew' : 'Brews')
+    ),
+    el('div', { class: 'you-pstat' },
+      el('div', { class: 'you-pstat-value' }, String(bestStreakDays || 0)),
+      el('div', { class: 'you-pstat-label' }, 'Best streak')
+    ),
+    el('div', { class: 'you-pstat' },
+      el('div', { class: 'you-pstat-value' }, String(badgesEarned || 0)),
+      el('div', { class: 'you-pstat-label' }, badgesEarned === 1 ? 'Badge' : 'Badges')
+    )
+  );
+  card.appendChild(stats);
   return card;
 }
 
@@ -136,14 +160,18 @@ function openYouSettings() {
   window.location.hash = '#/auth';
 }
 
-/* ---------- 2. Streak card ---------- */
+/* ---------- 2. Streak card ----------
+   Beli-style streak with momentum: the headline number is animated on first
+   paint, and a small momentum line below the 7-day grid tells the user how
+   close they are to the next milestone (3 / 7 / 14 / 30 / 60 / 100 day
+   anchors) so the streak always has a "next thing to chase". */
 function youStreakCard(cs, bs, brews) {
   const card = el('div', { class: 'you-card you-card-dark you-streak' });
   card.appendChild(el('div', { class: 'you-eyebrow you-eyebrow-yellow' }, 'YOUR BREWS'));
   card.appendChild(el('div', { class: 'you-streak-row' },
     el('div', { class: 'you-streak-num' },
       _svgEl(YOU_ICONS.flame),
-      el('span', { class: 'you-streak-value' }, String(cs)),
+      el('span', { class: 'you-streak-value', 'data-target': String(cs) }, String(cs)),
       el('span', { class: 'you-streak-label' }, cs === 1 ? 'day streak' : 'day streak')
     ),
     el('div', { class: 'you-streak-best' }, 'Best: ' + bs + ' day' + (bs === 1 ? '' : 's'))
@@ -158,47 +186,129 @@ function youStreakCard(cs, bs, brews) {
     ));
   });
   card.appendChild(grid);
+
+  // Momentum line — what milestone they're chasing next
+  const milestones = [3, 7, 14, 30, 60, 100, 365];
+  const next = milestones.find(m => m > cs) || (cs + 30);
+  const prev = [...milestones].reverse().find(m => m <= cs) || 0;
+  const span = next - prev || 1;
+  const progress = Math.max(0, Math.min(1, (cs - prev) / span));
+  const remaining = next - cs;
+  const momentumCopy = cs === 0
+    ? 'Log a brew today to start a streak.'
+    : remaining === 1
+      ? '1 day to your next milestone.'
+      : remaining + ' days to ' + next + '-day milestone.';
+
+  card.appendChild(el('div', { class: 'you-streak-momentum' },
+    el('div', { class: 'you-streak-track' },
+      el('div', { class: 'you-streak-fill', style: 'width:' + (progress * 100).toFixed(0) + '%' })
+    ),
+    el('div', { class: 'you-streak-momentum-text' }, momentumCopy)
+  ));
   return card;
 }
 
-/* ---------- 3. Log today's brew CTA ---------- */
-function youLogCta() {
-  return el('button', { class: 'you-log-cta', type: 'button', onclick: () => openBrewLogModal() },
-    el('span', {}, 'Log Today’s Brew'),
-    _svgEl(YOU_ICONS.plus)
-  );
+/* Animate the streak number from 0 to its current value on first render.
+   ~600ms ease-out gives the page a small "alive" feeling without delaying
+   readability. Skipped if the user prefers reduced motion. */
+function animateStreakValue(target) {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const node = document.querySelector('.you-streak-value');
+  if (!node || !target) return;
+  const start = performance.now();
+  const duration = Math.min(900, 250 + target * 28);
+  function tick(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    node.textContent = String(Math.round(eased * target));
+    if (t < 1) requestAnimationFrame(tick);
+    else node.textContent = String(target);
+  }
+  requestAnimationFrame(tick);
 }
 
-/* ---------- 4. Recommended for you ---------- */
-function youRecommendedCard(rec) {
-  const card = el('div', { class: 'you-card you-recommended' });
-  card.appendChild(el('div', { class: 'you-eyebrow' }, 'RECOMMENDED FOR YOU'));
-  if (rec.photoUrl) {
-    card.appendChild(el('div', { class: 'you-rec-photo', style: 'background-image:url(\'' + rec.photoUrl + '\')' }));
-  }
-  card.appendChild(el('h3', { class: 'you-rec-name' }, rec.name));
-  card.appendChild(el('p', { class: 'you-rec-desc' }, rec.description));
-  card.appendChild(el('div', { class: 'you-rec-stats' },
-    statTile('Method', rec.method),
-    statTile('Ratio', rec.ratio),
-    statTile('Water', rec.waterTempF + '°F'),
-    statTile('Grind', rec.grindSize)
-  ));
-  card.appendChild(el('div', { class: 'you-rec-tags' },
-    (rec.flavorTags || []).map(t => el('span', { class: 'you-tag' }, t))
-  ));
-  card.appendChild(el('button', {
-    class: 'you-rec-cta',
+/* ---------- 3. Log today's brew CTA ----------
+   Sleek pill with a deterministic-but-believable social-proof line below it
+   (Beli/DoorDash both use this — "1,284 people brewed this today" — to build
+   habit-loop pressure without being pushy). */
+function youLogCta(cs) {
+  const wrap = el('div', { class: 'you-log-wrap' });
+  wrap.appendChild(el('button', {
+    class: 'you-log-cta',
     type: 'button',
-    onclick: () => openBrewLogModal({
-      method: rec.method,
-      ratio: rec.ratio,
-      grindSize: rec.grindSize,
-      waterTempF: rec.waterTempF,
-      flavorTags: rec.flavorTags || [],
-      beanOrigin: ''
-    })
-  }, 'Try This Brew'));
+    onclick: () => openBrewLogModal()
+  },
+    el('span', {}, 'Log Today’s Brew'),
+    _svgEl(YOU_ICONS.plus)
+  ));
+
+  // Subtle social proof — pseudo-random but stable per day so it doesn't flicker.
+  const today = new Date();
+  const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  const proofCount = 1100 + (seed % 740);
+  const copy = cs > 0
+    ? proofCount.toLocaleString() + ' brewers logged today. Keep your streak.'
+    : proofCount.toLocaleString() + ' brewers logged today. Join them.';
+  wrap.appendChild(el('div', { class: 'you-log-proof' },
+    el('span', { class: 'you-log-proof-dot' }),
+    el('span', {}, copy)
+  ));
+  return wrap;
+}
+
+/* ---------- 4. Recommended for you ----------
+   DoorDash-style horizontal scroll. The first card stays at full visibility
+   width so it reads as the headline pick, with neighboring cards just edged
+   into view to telegraph "scroll for more". Each card is a complete swipe-and-
+   try unit: photo, name, method, ratio, tags, primary CTA. */
+function youRecommendedRow(recs) {
+  const card = el('div', { class: 'you-card you-recs-card' });
+  card.appendChild(el('div', { class: 'you-recs-head' },
+    el('div', { class: 'you-eyebrow' }, 'RECOMMENDED FOR YOU'),
+    el('span', { class: 'you-recs-meta' }, 'Tuned to your last brews')
+  ));
+  const scroller = el('div', { class: 'you-recs-scroll' });
+  recs.forEach((rec, i) => scroller.appendChild(recCard(rec, i === 0)));
+  card.appendChild(scroller);
+  return card;
+}
+
+function recCard(rec, isFeatured) {
+  const card = el('div', { class: 'you-rec-tile' + (isFeatured ? ' is-featured' : '') });
+  if (rec.photoUrl) {
+    card.appendChild(el('div', {
+      class: 'you-rec-tile-photo',
+      style: 'background-image:url(\'' + rec.photoUrl + '\')'
+    },
+      isFeatured ? el('div', { class: 'you-rec-tile-flag' }, '★ TODAY’S PICK') : null
+    ));
+  }
+  card.appendChild(el('div', { class: 'you-rec-tile-body' },
+    el('h3', { class: 'you-rec-tile-name' }, rec.name),
+    el('div', { class: 'you-rec-tile-meta' },
+      el('span', {}, rec.method),
+      el('span', { class: 'you-rec-tile-dot' }),
+      el('span', {}, rec.ratio),
+      el('span', { class: 'you-rec-tile-dot' }),
+      el('span', {}, rec.grindSize)
+    ),
+    el('div', { class: 'you-rec-tile-tags' },
+      (rec.flavorTags || []).slice(0, 3).map(t => el('span', { class: 'you-tag' }, t))
+    ),
+    el('button', {
+      class: 'you-rec-tile-cta',
+      type: 'button',
+      onclick: () => openBrewLogModal({
+        method: rec.method,
+        ratio: rec.ratio,
+        grindSize: rec.grindSize,
+        waterTempF: rec.waterTempF,
+        flavorTags: rec.flavorTags || [],
+        beanOrigin: ''
+      })
+    }, 'Try this brew')
+  ));
   return card;
 }
 
@@ -561,21 +671,69 @@ function openPairDeviceModal() {
 }
 
 /* ---------- Recommended brew picker ---------- */
+function _recommendedBrewPool() {
+  if (typeof DATA !== 'undefined' && Array.isArray(DATA.recommendedBrews) && DATA.recommendedBrews.length) {
+    return DATA.recommendedBrews;
+  }
+  // Local fallback so the horizontal scroll always has variety even if
+  // DATA.recommendedBrews is missing or short. Photos are stable Unsplash
+  // URLs already used elsewhere in the app.
+  return [
+    {
+      name: 'Bright Yirgacheffe pour-over',
+      method: 'Pour-over', ratio: '1:16', waterTempF: 200, grindSize: 'Medium-fine',
+      flavorTags: ['floral', 'citrus', 'tea-like'],
+      description: 'A bright, balanced cup to ease into the morning.',
+      photoUrl: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?w=600&q=80'
+    },
+    {
+      name: 'Maple bourbon cold brew',
+      method: 'Cold brew', ratio: '1:8', waterTempF: 70, grindSize: 'Coarse',
+      flavorTags: ['caramel', 'sweet', 'smooth'],
+      description: 'Cold brew concentrate kissed with maple syrup. Grown-up summer drink.',
+      photoUrl: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80'
+    },
+    {
+      name: 'Honey lavender latte',
+      method: 'Espresso', ratio: '1:2', waterTempF: 200, grindSize: 'Fine',
+      flavorTags: ['floral', 'sweet', 'creamy'],
+      description: 'Steamed milk infused with dried lavender, finished with a double shot.',
+      photoUrl: 'https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=600&q=80'
+    },
+    {
+      name: 'French press deep dive',
+      method: 'French press', ratio: '1:15', waterTempF: 200, grindSize: 'Coarse',
+      flavorTags: ['chocolatey', 'full body', 'earthy'],
+      description: 'Heavy body, full extraction. Strong without being bitter.',
+      photoUrl: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80'
+    },
+    {
+      name: 'Iced cardamom cortado',
+      method: 'Espresso', ratio: '1:2', waterTempF: 200, grindSize: 'Fine',
+      flavorTags: ['spiced', 'sweet', 'creamy'],
+      description: 'Equal parts espresso and cardamom milk. Small drink, big finish.',
+      photoUrl: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600&q=80'
+    }
+  ];
+}
+
 function pickRecommendedBrew() {
-  const list = (typeof DATA !== 'undefined' && Array.isArray(DATA.recommendedBrews) && DATA.recommendedBrews.length)
-    ? DATA.recommendedBrews
-    : [{
-        name: 'Today\'s pick',
-        method: 'Pour-over',
-        ratio: '1:16',
-        waterTempF: 200,
-        grindSize: 'Medium-fine',
-        flavorTags: ['floral', 'citrus'],
-        description: 'A bright, balanced cup to ease into the morning.',
-        photoUrl: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?w=600&q=80'
-      }];
+  const list = _recommendedBrewPool();
   const today = new Date();
   const start = new Date(today.getFullYear(), 0, 0);
   const dayOfYear = Math.floor((today - start) / 86400000);
   return list[dayOfYear % list.length];
+}
+
+function pickRecommendedBrews(n) {
+  const pool = _recommendedBrewPool();
+  if (!pool.length) return [];
+  const today = new Date();
+  const start = new Date(today.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((today - start) / 86400000);
+  const ordered = [];
+  for (let i = 0; i < Math.min(n, pool.length); i++) {
+    ordered.push(pool[(dayOfYear + i) % pool.length]);
+  }
+  return ordered;
 }

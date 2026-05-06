@@ -371,8 +371,56 @@ function buildListView() {
     wrap.appendChild(el('div', { class: 'pp-empty' }, 'No cafes match your search.'));
     return wrap;
   }
+
+  // Beli-style "Next stops" ranked rail — only show on the unfiltered All view
+  // and only when there are top-match-but-not-yet-visited cafes to highlight.
+  if (_ppState.filter === 'all' && !_ppState.query) {
+    const rail = buildNextStopsRail();
+    if (rail) wrap.appendChild(rail);
+  }
+
   cafes.forEach(c => wrap.appendChild(buildListCard(c)));
   return wrap;
+}
+
+/* "Next stops" — top 3 not-yet-visited top-match cafés, ranked.
+   Drives discovery + completion: gives the user a clear target list for
+   their next coffee outing. Ranked numbering is the Beli pattern. */
+function buildNextStopsRail() {
+  const all = (typeof getAllCafes === 'function') ? getAllCafes() : ((typeof DATA !== 'undefined' && DATA.cafes) || []);
+  if (!all.length) return null;
+  const ranked = all
+    .filter(c => !getVisitForCafe(c.id))
+    .filter(c => c.topMatch || (c.matchScore || 0) >= 80)
+    .slice(0, 3);
+  if (ranked.length < 2) return null;
+
+  const wrap = el('div', { class: 'pp-rail' });
+  wrap.appendChild(el('div', { class: 'pp-rail-head' },
+    el('span', { class: 'pp-rail-eyebrow' }, 'NEXT STOPS'),
+    el('span', { class: 'pp-rail-meta' }, 'Top matches you haven’t hit')
+  ));
+  const scroller = el('div', { class: 'pp-rail-scroll' });
+  ranked.forEach((c, i) => scroller.appendChild(buildNextStopCard(c, i + 1)));
+  wrap.appendChild(scroller);
+  return wrap;
+}
+
+function buildNextStopCard(cafe, rank) {
+  const card = el('button', {
+    type: 'button',
+    class: 'pp-rail-card' + (rank === 1 ? ' is-first' : ''),
+    onclick: () => openCafeDetail(cafe)
+  });
+  card.appendChild(el('div', {
+    class: 'pp-rail-photo',
+    style: cafe.photoUrl ? 'background-image:url(\'' + cafe.photoUrl + '\')' : 'background:linear-gradient(135deg,#5C2E2A,#1A0D06)'
+  }, el('span', { class: 'pp-rail-rank' }, '#' + rank)));
+  card.appendChild(el('div', { class: 'pp-rail-body' },
+    el('div', { class: 'pp-rail-name' }, cafe.name),
+    el('div', { class: 'pp-rail-loc' }, (cafe.city || '') + ', ' + (cafe.state || ''))
+  ));
+  return card;
 }
 
 function buildListCard(cafe) {
