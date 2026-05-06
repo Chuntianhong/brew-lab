@@ -143,44 +143,36 @@ function buildTrackBlock(track) {
   head.appendChild(mini);
   block.appendChild(head);
 
-  // Lessons "path" — scrollable footprint trail with each lesson as a node
-  // and walking footprints stepping between them. Replaces the old grid;
-  // the trail alternates left/center/right anchors so the footprints can
-  // visibly step from one to the next inside a fixed-height scroll box.
+  // Lessons "path" — horizontally scrollable trail. Lesson cards line up
+  // left-to-right with footprints walking between each pair (right edge of
+  // card N → left edge of card N+1). Long tracks scroll sideways inside the
+  // track block.
   const path = el('div', { class: 'learn-path' });
   const pathInner = el('div', { class: 'learn-path-inner' });
   const lessons = track.lessons || [];
   lessons.forEach((lesson, i) => {
-    const side = (i % 2 === 0) ? 'left' : 'right';
-    pathInner.appendChild(buildPathNode(track, lesson, side, i + 1));
+    pathInner.appendChild(buildPathNode(track, lesson, i + 1));
     if (i < lessons.length - 1) {
-      const nextSide = ((i + 1) % 2 === 0) ? 'left' : 'right';
-      pathInner.appendChild(buildPathSteps(side, nextSide));
+      pathInner.appendChild(buildPathSteps());
     }
   });
   path.appendChild(pathInner);
   block.appendChild(path);
 
+  // Allow vertical mouse-wheel to scroll the path horizontally on desktop.
+  if (typeof enableHorizontalWheelScroll === 'function') enableHorizontalWheelScroll(block);
+
   return block;
 }
 
-/* A node on the path — circular badge with status icon, lesson title to the
-   side. Tapping a non-locked node opens the lesson video modal. */
-function buildPathNode(track, lesson, side, index) {
+/* A single lesson card on the path. Tapping the card (anywhere) opens the
+   lesson video modal. Locked cards shake instead. */
+function buildPathNode(track, lesson, index) {
   const state = getLessonState(lesson.id);
-  const node = el('div', { class: 'learn-path-node learn-path-' + side + ' learn-state-' + state });
-
-  // Circular badge with status icon
-  let statusHtml = LEARN_ICONS.play;
-  if (state === 'completed') statusHtml = LEARN_ICONS.check;
-  else if (state === 'in-progress') statusHtml = LEARN_ICONS.hourglass;
-  else if (state === 'locked') statusHtml = LEARN_ICONS.lock;
-
-  const badge = el('button', {
+  const node = el('button', {
     type: 'button',
-    class: 'learn-path-badge',
+    class: 'learn-path-node learn-state-' + state,
     'aria-label': lesson.title,
-    style: state === 'locked' ? '' : 'background:' + (track.iconColor || '#8B4F2A'),
     onclick: () => {
       if (state === 'locked') {
         node.classList.remove('shake');
@@ -190,42 +182,39 @@ function buildPathNode(track, lesson, side, index) {
       }
       openLessonModal(track, lesson);
     }
+  });
+
+  // Circular status badge
+  let statusHtml = LEARN_ICONS.play;
+  if (state === 'completed') statusHtml = LEARN_ICONS.check;
+  else if (state === 'in-progress') statusHtml = LEARN_ICONS.hourglass;
+  else if (state === 'locked') statusHtml = LEARN_ICONS.lock;
+
+  const badge = el('div', {
+    class: 'learn-path-badge',
+    style: state === 'locked' ? '' : 'background:' + (track.iconColor || '#8B4F2A')
   }, _learnSvg(statusHtml));
   node.appendChild(badge);
 
-  // Lesson info card next to the badge
+  // Body
   let stateLabel = '+' + lesson.xp + ' XP';
   if (state === 'completed') stateLabel = 'Completed · +' + lesson.xp + ' XP';
   else if (state === 'in-progress') stateLabel = 'Continue · +' + lesson.xp + ' XP';
   else if (state === 'locked') stateLabel = 'Locked';
 
-  const info = el('div', { class: 'learn-path-info' },
+  node.appendChild(el('div', { class: 'learn-path-info' },
     el('div', { class: 'learn-path-step' }, 'STEP ' + index),
     el('div', { class: 'learn-path-title' }, lesson.title),
     el('div', { class: 'learn-path-state' }, stateLabel)
-  );
-  // Make the info card itself tappable so users don't have to hit the small
-  // badge — improves UX dramatically on mobile.
-  info.style.cursor = state === 'locked' ? 'default' : 'pointer';
-  if (state !== 'locked') {
-    info.addEventListener('click', () => openLessonModal(track, lesson));
-  }
-  node.appendChild(info);
+  ));
   return node;
 }
 
-/* A run of footprints connecting two adjacent nodes. Renders 3-4 small foot
-   icons in a gentle curve, alternating left/right feet to look like a
-   natural walking trail. Direction depends on which side the prev/next
-   nodes anchor to. */
-function buildPathSteps(prevSide, nextSide) {
+/* Footprints between two adjacent lesson cards. Four small feet walking
+   left-to-right, alternating tilt to look like real steps. */
+function buildPathSteps() {
   const steps = el('div', { class: 'learn-path-steps' });
-  // 4 foot icons stepping diagonally; we tilt them slightly L/R/L/R
   const tilts = [-22, 18, -18, 22];
-  // Direction informs which way the line of feet skews
-  const direction = (prevSide === nextSide) ? 'straight' :
-    (prevSide === 'left' && nextSide === 'right') ? 'rightward' : 'leftward';
-  steps.classList.add('learn-path-steps-' + direction);
   tilts.forEach((t, i) => {
     const foot = _learnSvg(LEARN_ICONS.footprint);
     foot.classList.add('learn-path-foot');

@@ -49,3 +49,56 @@ function computeAchievements(brews, currentStreakVal, palateCoverageVal, uniqueO
     unlocked: a.locked ? false : !!a.test(ctx)
   }));
 }
+
+/* Compare the just-computed achievements against the previously-seen set in
+   localStorage; fire a celebratory reveal toast for each newly-unlocked
+   badge and persist the new set so we don't repeat. Stagger multiple toasts
+   so they don't overlap. */
+const _BEAN_SEEN_KEY = 'bean.seenAchievements.v1';
+function revealNewAchievements(achievements) {
+  if (!achievements || !achievements.length) return;
+  let seen;
+  try { seen = JSON.parse(localStorage.getItem(_BEAN_SEEN_KEY) || '[]'); }
+  catch (e) { seen = []; }
+  const seenSet = new Set(Array.isArray(seen) ? seen : []);
+  const newlyUnlocked = achievements.filter(a => a.unlocked && !seenSet.has(a.id));
+  // First-ever paint: don't fire confetti for everything already unlocked,
+  // just persist the current state silently.
+  if (!seenSet.size && newlyUnlocked.length) {
+    achievements.forEach(a => { if (a.unlocked) seenSet.add(a.id); });
+    localStorage.setItem(_BEAN_SEEN_KEY, JSON.stringify(Array.from(seenSet)));
+    return;
+  }
+  newlyUnlocked.forEach((a, i) => {
+    setTimeout(() => showAchievementReveal(a), i * 1800);
+    seenSet.add(a.id);
+  });
+  if (newlyUnlocked.length) {
+    localStorage.setItem(_BEAN_SEEN_KEY, JSON.stringify(Array.from(seenSet)));
+  }
+}
+
+/* The actual toast — appended to body, slides down + bursts, removed after
+   a few seconds. Independent of any page render so it works after a brew
+   log triggers an unlock from the modal. */
+function showAchievementReveal(achievement) {
+  const iconHtml = (typeof ACHIEVEMENT_ICONS !== 'undefined' && ACHIEVEMENT_ICONS[achievement.icon])
+    ? ACHIEVEMENT_ICONS[achievement.icon]
+    : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 L14 9 L20 9 L15 13 L17 19 L12 16 L7 19 L9 13 L4 9 L10 9 Z"/></svg>';
+  const toast = document.createElement('div');
+  toast.className = 'bean-reveal-toast';
+  toast.innerHTML =
+    '<div class="reveal-icon">' + iconHtml + '</div>' +
+    '<div class="reveal-text">' +
+      '<div class="reveal-eyebrow">Badge unlocked</div>' +
+      '<div class="reveal-name">' + achievement.name + '</div>' +
+    '</div>';
+  document.body.appendChild(toast);
+  // Trigger the slide-in transition
+  requestAnimationFrame(() => toast.classList.add('show'));
+  // Auto-dismiss
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+  }, 3200);
+}

@@ -113,6 +113,8 @@ function renderYou(main) {
   // Make all horizontal scrollers respond to vertical mouse-wheel input on
   // desktop (touch / trackpad already work natively).
   enableHorizontalWheelScroll(page);
+  // Fire a celebration toast for any badge that just unlocked.
+  if (typeof revealNewAchievements === 'function') revealNewAchievements(achievements);
 }
 
 /* Find every horizontal scroll container in the subtree and let a vertical
@@ -191,6 +193,18 @@ function openYouSettings() {
    anchors) so the streak always has a "next thing to chase". */
 function youStreakCard(cs, bs, brews) {
   const card = el('div', { class: 'you-card you-card-dark you-streak' });
+
+  // First-time user — friendlier empty state instead of "0 day streak"
+  if (!brews || !brews.length) {
+    card.appendChild(el('div', { class: 'you-eyebrow you-eyebrow-yellow' }, 'YOUR BREWS'));
+    card.appendChild(el('div', { class: 'you-streak-empty-state' },
+      el('div', { class: 'you-streak-empty-flame' }, _svgEl(YOU_ICONS.flame)),
+      el('div', { class: 'you-streak-empty-h' }, 'Start your streak today.'),
+      el('div', { class: 'you-streak-empty-sub' }, 'Log your first brew to begin your coffee journey. Most members hit 7 days in their first week.')
+    ));
+    return card;
+  }
+
   card.appendChild(el('div', { class: 'you-eyebrow you-eyebrow-yellow' }, 'YOUR BREWS'));
   card.appendChild(el('div', { class: 'you-streak-row' },
     el('div', { class: 'you-streak-num' },
@@ -391,7 +405,11 @@ function youPastBrewsCard(brews) {
   card.appendChild(el('div', { class: 'you-eyebrow' }, 'PAST BREWS'));
   card.appendChild(el('h3', { class: 'you-card-h-light' }, 'Recent log entries'));
   if (!brews.length) {
-    card.appendChild(el('p', { class: 'you-empty' }, 'No brews logged yet. Log one to start your streak.'));
+    card.appendChild(el('div', { class: 'you-empty-illus' },
+      el('div', { class: 'you-empty-cup' }, '☕'),
+      el('div', { class: 'you-empty-h' }, 'Your brew journal is empty.'),
+      el('p', { class: 'you-empty-sub' }, 'Every brew you log will live here with stars, notes, and timing. Tap “Log Today’s Brew” above to add your first.')
+    ));
     return card;
   }
   const sorted = brews.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
