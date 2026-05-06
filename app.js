@@ -1714,6 +1714,108 @@ function renderMagazineHome(main) {
   );
   page.appendChild(hero);
 
+  /* === FEAT-GRID — polish-preview tile grid wired to the live backend ===
+     Four tiles below the cover: Ask the Barista (tall), Drink of the day,
+     Origins Atlas, Giveaway (wide). Each tile links to a real route or action. */
+  const featSection = el('section', { style: 'padding:8px 0 32px' },
+    el('div', { class: 'container' },
+      el('div', { class: 'feat-grid' },
+        // 1. Ask the Barista (tall) — opens the vibe wheel
+        el('a', {
+          class: 'tile barista',
+          onclick: () => openBaristaWheel(),
+          style: 'cursor:pointer'
+        },
+          el('div', { class: 'tag' },
+            el('span', {}, '◆ Ask the Barista'),
+            el('span', { class: 'num' }, '01')
+          ),
+          el('h3', {},
+            'Your ',
+            el('em', {}, 'virtual'),
+            ' barista, trained on your machine.'
+          ),
+          el('p', {}, 'Gets to know your taste, remembers your last brew, and tells you what to dial in next. Better than Google, kinder than r/espresso.'),
+          el('div', { style: 'font-size:13px;opacity:0.7;margin-bottom:14px' }, 'Try a question'),
+          el('div', { class: 'arrow-cta' }, 'Open chat ', el('span', { class: 'ar' }, '↗'))
+        ),
+        // 2. Drink of the day — links to the current drink's recipe
+        el('a', {
+          class: 'tile dotd',
+          onclick: () => navigate(drink.recipeId ? 'recipe/' + drink.recipeId : 'recipes'),
+          style: 'cursor:pointer'
+        },
+          el('div', { class: 'tag', style: 'color:var(--tomato)' },
+            el('span', {}, '◆ Drink of the day'),
+            el('span', { class: 'num' }, '02')
+          ),
+          el('h3', {},
+            (() => {
+              const parts = drink.name.split(' ');
+              return [parts.slice(0, -1).join(' '), ' ', el('em', {}, parts.slice(-1)[0] + '.')];
+            })()
+          ),
+          el('p', {}, drink.desc.split('.').slice(0, 1).join('.') + '.'),
+          el('div', { class: 'dotd-meta' },
+            el('span', {}, el('strong', {}, '5 min')),
+            el('span', {}, el('strong', {}, '★★★★★'), ' 4.8')
+          ),
+          el('div', { class: 'arrow-cta' }, 'See recipe ', el('span', { class: 'ar' }, '↗'))
+        ),
+        // 3. Origins Atlas — navigates to origins page
+        el('a', {
+          class: 'tile atlas',
+          onclick: () => navigate('origins'),
+          style: 'cursor:pointer'
+        },
+          el('div', { class: 'tag' },
+            el('span', {}, '◆ Origins atlas'),
+            el('span', { class: 'num' }, '03')
+          ),
+          el('h3', {},
+            ((DATA.origins || []).length || 17) + ' farms. ',
+            el('em', {}, '4 continents.')
+          ),
+          el('p', {}, 'Visit the people behind your beans. Watch a 5-minute film at every origin.'),
+          el('div', { class: 'arrow-cta' }, 'Open the map ', el('span', { class: 'ar' }, '↗'))
+        ),
+        // 4. Giveaway (wide) — same nav target as the existing community giveaway tile
+        giveaway ? el('a', {
+          class: 'tile give',
+          onclick: () => {
+            navigate('community');
+            setTimeout(() => {
+              const target = document.getElementById('giveaway-' + giveaway.id);
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 250);
+          },
+          style: 'cursor:pointer'
+        },
+          el('div', { class: 'give-grid' },
+            el('div', { class: 'give-sticker' },
+              'WIN',
+              el('em', {}, 'this week')
+            ),
+            el('div', { class: 'give-info' },
+              el('div', { class: 'tag', style: 'color:var(--marigold);margin-bottom:8px' }, '◆ Members only · giveaway'),
+              el('h3', { style: 'font-size:26px' },
+                'Win the ',
+                el('em', {}, giveaway.name + '.')
+              ),
+              el('div', { class: 'meta', style: 'display:flex;gap:18px;font-size:13px;flex-wrap:wrap;margin-top:8px;opacity:0.85' },
+                el('span', {}, el('strong', { style: 'color:var(--cream);font-weight:700' }, '1,284'), ' entries'),
+                el('span', {}, giveaway.status || 'Closes Sunday'),
+                el('span', {}, 'Free to enter')
+              )
+            ),
+            el('div', { class: 'arrow-cta' }, 'Enter ', el('span', { class: 'ar' }, '↗'))
+          )
+        ) : null
+      )
+    )
+  );
+  page.appendChild(featSection);
+
   /* === WORLD MAP: cafes + bean farms === */
   const mapSection = el('section', { style: 'padding:32px 0' },
     el('div', { class: 'container' },
